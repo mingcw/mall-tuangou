@@ -1,0 +1,6 @@
+/runtime
+/thinkphp
+/vendor
+.idea
+*.log
+.settings
