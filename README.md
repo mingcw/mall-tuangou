@@ -8,7 +8,7 @@
 
 1. 部分前端资源现未上传
 
-后台模板框架`H-ui.admin`所需文件未上传（太大），即`public/static/admin/h-ui-admin`目录下为空
+后台模板框架 `H-ui.admin` 所需文件未上传（太大），所以 `public/static/admin/h-ui-admin` 目录下为空
 
 2. 测试账号密码
 
