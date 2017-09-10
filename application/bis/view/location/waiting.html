@@ -1,0 +1,12 @@
+<!--包含头部文件-->
+{include file="common/header" /}
+<div class="cl pd-5 bg-1 bk-gray mt-20">
+	{if $location}
+		<h3>{$location.status|locationStatus=$location.name,###}</h3>
+	{else /}
+		<h3>不存在该申请情况</h3>
+	{/if}
+</div>
+{include file="common/footer" /}
+</body>
+</html>

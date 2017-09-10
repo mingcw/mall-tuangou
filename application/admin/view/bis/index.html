@@ -1,0 +1,43 @@
+<!--包含头部文件-->
+{include file="common/header" /}
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 已入驻商户列表 </nav>
+<div class="page-container">
+	
+	
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="80">ID</th>
+					<th width="100">商户名称</th>
+					<th width="30">法人</th>
+					<th width="150">联系电话</th>
+					<th width="60">申请时间</th>
+					<th width="60">状态</th>
+					<th width="100">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{foreach $bis as $v}
+					<tr class="text-c">
+						<td>{$v.id}</td>
+						<td>{$v.name}</td>
+						<td class="text-c">{$v.faren}</td>
+						<td class="text-c">{$v.faren_tel}</td>
+						<td>{$v.create_time}</td>
+						<td class="td-status">{$v.status|status}</td>
+						<td class="td-manage">
+							<a style="text-decoration:none" class="ml-5" onClick="o2o_edit('商户入驻详情数据', '{:url('bis/detail', ['id' => $v.id])}')" href="javascript:;" title="查看"><i class="Hui-iconfont">&#xe6df;</i></a>
+							<a style="text-decoration:none" class="ml-5" onClick="o2o_del('{:url('bis/status', ['id' => $v.id, 'status' => -1])}')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+							<a style="text-decoration:none" class="ml-5" onClick="" href="javascript:;" title="已通过">已通过</a>
+						</td>
+					</tr>
+				{/foreach}
+			</tbody>
+		</table>
+	</div>
+	{:paginate($bis)}
+</div>
+<!--包含头部文件-->
+{include file="common/footer" /}
