@@ -10,6 +10,8 @@ class Bis extends Validate
 {
     // 验证规则
     protected $rule = [
+        ['id', 'number', 'ID必须是数字'],
+        ['status', 'number', '状态值必须是数字'],
         ['name', 'require', '商户名称不能为空'],
         ['name', 'max:60', '商户名称不能超过60个字符'],
         ['city_id', 'require', '城市ID不能为空'],
@@ -30,5 +32,6 @@ class Bis extends Validate
     // 验证场景
     protected $scene = [
         'add'  =>  ['name','city_id', 'logo', 'bank_info', 'bank_name', 'bank_user', 'faren', 'faren_tel', 'email'],
+        'status' => ['id', 'status'],
     ];
 }

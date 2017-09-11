@@ -21,16 +21,21 @@ class Deal extends Common
     {
         if(request()->isPost()){ // 处理表单
             $data = input('post.');
-            var_dump($data);die;
+
+            // 验证
             $validate = validate('Deal');
             if(!$validate->scene('add')->check($data)){
-                $this->error('页面不存在');
+                $this->error($validate->getError());
             }
+
+            // 入库
+            $bisAccount = $this->getLoginBis();
+            $location = model('BisLocation')->where(['id' => $data['location_ids'][0]])->field(['x_point', 'y_point'])->find();
             $saveData = [
                 'name' => $data['name'],
                 'category_id' => $data['category_id'],
                 'se_category_id' => empty($data['se_category_id']) ? '' : implode(',',$data['se_category_id']),
-                'bis_id' => $this->getLoginUser()->bis_id,
+                'bis_id' => $bisAccount->bis_id,
                 'location_ids' => empty($data['location_ids'])?'':implode(',',$data['location_ids']),
                 'image' => $data['image'],
                 'description' => $data['description'],
@@ -42,18 +47,17 @@ class Deal extends Common
                 'total_count' => $data['total_count'],
                 'coupons_begin_time' => strtotime($data['coupons_begin_time']),
                 'coupons_end_time' => strtotime($data['coupons_end_time']),
-                'xpoint'=>$location->xpoint,
-                'ypoint'=>$location->ypoint
-                'bis_account_id'=>$this->getLoginUser()->id,
+                'xpoint' => $location->x_point,
+                'ypoint' => $location->y_point,
+                'bis_account_id' => $bisAccount->id,
                 'notes' => $data['notes'],
             ];
             $result = model('Deal')->save($saveData);
             if($result === false){
                 $this->error('添加失败，请重试');
             }
-            else{
-                $this->success('添加成功', url('deal/index'));
-            }
+            
+            $this->success('添加成功', url('deal/index'));
         }
         else{
             // 一级城市

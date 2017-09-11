@@ -34,7 +34,7 @@ class Common extends Controller
 
     /**
      * 获取已登录商户session
-     * @return [type] [description]
+     * @return model [description]
      */
     public function getLoginBis(){
         if(!$this->bis){
