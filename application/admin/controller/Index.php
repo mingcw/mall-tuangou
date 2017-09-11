@@ -24,6 +24,6 @@ class Index extends Controller
      */
     public function welcome()
     {
-    	return $this->fetch();
+    	return '<h2>' . config('web.web_name') . '主平台中心欢迎您！</h2>';
     }
 }
