@@ -1,6 +1,7 @@
 <?php
 namespace app\bis\controller;
 use think\Controller;
+
 /**
  * 团购管理控制器
  */
@@ -12,6 +13,7 @@ class Deal extends Common
      */
     public function index()
     {
+        echo __FUNCTION__;die;
         return $this->fetch();
     }
     /**
@@ -45,10 +47,10 @@ class Deal extends Common
                 'current_price' => $data['current_price'],
                 'city_id' => $data['city_id'],
                 'total_count' => $data['total_count'],
-                'coupons_begin_time' => strtotime($data['coupons_begin_time']),
+                'coupons_start_time' => strtotime($data['coupons_begin_time']),
                 'coupons_end_time' => strtotime($data['coupons_end_time']),
-                'xpoint' => $location->x_point,
-                'ypoint' => $location->y_point,
+                'x_point' => $location->x_point,
+                'y_point' => $location->y_point,
                 'bis_account_id' => $bisAccount->id,
                 'notes' => $data['notes'],
             ];
@@ -56,7 +58,7 @@ class Deal extends Common
             if($result === false){
                 $this->error('添加失败，请重试');
             }
-            
+
             $this->success('添加成功', url('deal/index'));
         }
         else{

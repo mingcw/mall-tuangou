@@ -7,7 +7,7 @@ use think\Model;
 /**
  * 团购商品模型
  */
-class City extends Common
+class Deal extends Common
 {
 
 }
