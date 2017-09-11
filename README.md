@@ -18,11 +18,11 @@
 
 3. 邮件服务相关配置
 
-	`application/extra/mail.php.example` 是邮件服务的相关参数，去掉`.example`后缀即可
+	`application/extra/mail.php.example` 是邮件服务的参数配置文件，拷贝后去掉`.example`。详细配置参考[点这里](https://github.com/PHPMailer/PHPMailer/blob/master/class.phpmailer.php)
 
 4. 部分前端资源现未上传
 
-	后台模板框架 `H-ui.admin` 所需文件未上传（太大），所以 `public/static/admin/h-ui-admin` 目录下为空
+	后台模板框架`H-ui.admin`所需文件未上传（太大），所以`public/static/admin/h-ui-admin`目录下为空
 
 5. 测试账号密码
 
