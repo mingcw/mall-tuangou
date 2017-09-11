@@ -9,5 +9,5 @@ use think\Model;
  */
 class Deal extends Common
 {
-
+    
 }

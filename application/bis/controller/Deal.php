@@ -13,7 +13,7 @@ class Deal extends Common
      */
     public function index()
     {
-        echo __FUNCTION__;die;
+        // $deal = model('Deal')->get
         return $this->fetch();
     }
     /**

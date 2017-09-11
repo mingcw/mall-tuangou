@@ -17,4 +17,13 @@ class Index extends Controller
     {
         return $this->fetch();
     }
+
+    /**
+     * 首页欢迎消息
+     * @return [type] [description]
+     */
+    public function welcome()
+    {
+    	return $this->fetch();
+    }
 }
