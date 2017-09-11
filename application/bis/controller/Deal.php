@@ -1,36 +1,32 @@
 <?php
 namespace app\bis\controller;
 use think\Controller;
-
 /**
  * 团购管理控制器
  */
 class Deal extends Common
 {
-	/**
-	 * 团购商品列表
-	 * @return [type] [description]
-	 */
+    /**
+     * 团购商品列表
+     * @return [type] [description]
+     */
     public function index()
     {
         return $this->fetch();
     }
-
     /**
      * 团购商品添加
      */
     public function add()
     {
-    	if(request()->isPost()){ // 处理表单
-    		$data = input('post.');
-    		var_dump($data);die;
-
-    		$validate = validate('Deal');
-    		if(!$validate->scene('add')->check($data)){
-    			$this->error('页面不存在');
-    		}
-
-    		$saveData = [
+        if(request()->isPost()){ // 处理表单
+            $data = input('post.');
+            var_dump($data);die;
+            $validate = validate('Deal');
+            if(!$validate->scene('add')->check($data)){
+                $this->error('页面不存在');
+            }
+            $saveData = [
                 'name' => $data['name'],
                 'category_id' => $data['category_id'],
                 'se_category_id' => empty($data['se_category_id']) ? '' : implode(',',$data['se_category_id']),
@@ -53,23 +49,21 @@ class Deal extends Common
             ];
             $result = model('Deal')->save($saveData);
             if($result === false){
-            	$this->error('添加失败，请重试');
+                $this->error('添加失败，请重试');
             }
             else{
-            	$this->success('添加成功', url('deal/index'));
+                $this->success('添加成功', url('deal/index'));
             }
-
-    	}
-    	else{
-			// 一级城市
-			$citys = model('City')->getNormalCitysByParentId();
-			// 一级分类
-			$categorys = model('Category')->getNormalCategoryByParentId();
-			// 商户门店
-	    	$bisId = $this->getLoginBis()->bis_id;
-			$bisLocation = model('BisLocation')->getNormalLocatinByBisId($bisId);
-
-	    	return $this->fetch('', ['categorys' => $categorys, 'citys' => $citys, 'bisLocation' => $bisLocation]);
-    	}
+        }
+        else{
+            // 一级城市
+            $citys = model('City')->getNormalCitysByParentId();
+            // 一级分类
+            $categorys = model('Category')->getNormalCategoryByParentId();
+            // 商户门店
+            $bisId = $this->getLoginBis()->bis_id;
+            $bisLocation = model('BisLocation')->getNormalLocatinByBisId($bisId);
+            return $this->fetch('', ['categorys' => $categorys, 'citys' => $citys, 'bisLocation' => $bisLocation]);
+        }
     }
 }
