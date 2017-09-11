@@ -16,10 +16,10 @@ class Bis extends Common
      */
     public function getBisByStatus($status = 0)
     {
-    	$where = ['status' => $status];
-    	$field = ['id', 'name', 'faren', 'faren_tel', 'create_time', 'status'];
-    	$order = 'id desc';
+        $where = ['status' => $status];
+        $field = ['id', 'name', 'faren', 'faren_tel', 'create_time', 'status'];
+        $order = 'id desc';
 
-    	return $this->where($where)->field($field)->order($order)->paginate();
+        return $this->where($where)->field($field)->order($order)->paginate();
     }
 }

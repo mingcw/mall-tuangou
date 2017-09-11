@@ -8,10 +8,10 @@ use think\Validate;
  */
 class Bis extends Validate
 {
-	// 验证规则
+    // 验证规则
     protected $rule = [
         ['id', 'number', 'ID必须是数字'],
-	    ['status', 'number', '状态值必须是数字'],
+        ['status', 'number', '状态值必须是数字'],
     ];
 
     // 验证场景

@@ -16,10 +16,10 @@ class City extends Common
      */
     public function getNormalCitysByParentId($parent_id = 0)
     {
-    	$where = ['status' => 1,'parent_id' => $parent_id];
+        $where = ['status' => 1,'parent_id' => $parent_id];
         $field = ['id', 'name'];
-    	$order = 'id desc';
+        $order = 'id desc';
 
-    	return $this->where($where)->field($field)->order($order)->select();
+        return $this->where($where)->field($field)->order($order)->select();
     }
 }

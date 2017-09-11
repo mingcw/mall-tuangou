@@ -9,7 +9,7 @@ use think\Model;
  */
 class Common extends Model
 {
-	// 自动完成
+    // 自动完成
     protected $auto = [];
     protected $insert = ['status' => 0, 'sort' => 100];
     protected $update = [];

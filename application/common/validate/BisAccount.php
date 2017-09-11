@@ -8,7 +8,7 @@ use think\Validate;
  */
 class BisAccount extends Validate
 {
-	// 验证规则
+    // 验证规则
     protected $rule = [
         ['username', 'require', '用户名不能为空'],
         ['username', 'max:16', '用户名不能超过16位字符'],

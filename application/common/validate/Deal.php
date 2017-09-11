@@ -8,7 +8,7 @@ use think\Validate;
  */
 class Deal extends Validate
 {
-	// 验证规则
+    // 验证规则
     protected $rule = [
         ['name', 'require', '团购名称不能为空'],
         ['name', 'max:50', '团购名称不能超过50个字符'],

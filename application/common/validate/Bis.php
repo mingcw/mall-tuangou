@@ -8,7 +8,7 @@ use think\Validate;
  */
 class Bis extends Validate
 {
-	// 验证规则
+    // 验证规则
     protected $rule = [
         ['name', 'require', '商户名称不能为空'],
         ['name', 'max:60', '商户名称不能超过60个字符'],

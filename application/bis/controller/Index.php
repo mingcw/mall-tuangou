@@ -7,10 +7,10 @@ use think\Controller;
  */
 class Index extends Common
 {
-	/**
-	 * 商户中心首页
-	 * @return [type] [description]
-	 */
+    /**
+     * 商户中心首页
+     * @return [type] [description]
+     */
     public function index()
     {
         return $this->fetch();

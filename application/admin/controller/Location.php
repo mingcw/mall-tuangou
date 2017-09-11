@@ -10,7 +10,7 @@ use extend\Map;
 
 class Location extends Controller
 {
-	protected $model;
+    protected $model;
 
     /**
      * 模型初始化

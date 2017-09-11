@@ -7,15 +7,15 @@ use think\Controller;
  */
 class Common extends Controller
 {
-	// 已登录商户session
-	public $bis;
+    // 已登录商户session
+    public $bis;
 
-	protected function _initialize()
+    protected function _initialize()
     {
         // 商户登录判断
         $isLogin = $this->isLogin();
         if(!$isLogin){
-        	$this->redirect('login/index');
+            $this->redirect('login/index');
         }
     }
 
@@ -25,11 +25,11 @@ class Common extends Controller
      */
     public function isLogin()
     {
-    	$bis = $this->getLoginBis();
-    	if($bis && $bis->id){
-    		return true;
-    	}
-    	return false;
+        $bis = $this->getLoginBis();
+        if($bis && $bis->id){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -37,9 +37,9 @@ class Common extends Controller
      * @return [type] [description]
      */
     public function getLoginBis(){
-    	if(!$this->bis){
-    		$this->bis = session('bisAccount');
-    	}
-    	return $this->bis;
+        if(!$this->bis){
+            $this->bis = session('bisAccount');
+        }
+        return $this->bis;
     }
 }

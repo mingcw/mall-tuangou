@@ -8,7 +8,7 @@ use think\Validate;
  */
 class BisLocation extends Validate
 {
-	// 验证规则
+    // 验证规则
     protected $rule = [
         ['tel', 'require', '电话不能为空'],
         ['tel', ['regex' => '\d{3,4}[\s,-]?\d{7,8}|1[3,4,5,8]\d[\s,-]?\d{4}[\s,-]?\d{4}'], '电话号码有误'],
