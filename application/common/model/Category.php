@@ -6,32 +6,17 @@ use think\Model;
 /**
  * 生活服务分类模型
  */
-class Category extends Model
-{
-	// 自动完成
-    protected $auto = [];
-    protected $insert = ['status' => 1, 'sort' => 100];
-    protected $update = [];
-
-    // 自动维护时间戳
-    protected $autoWriteTimestamp = true;
-    
-    
+class Category extends Common
+{    
 	/**
 	 * 获取正常的顶级分类
 	 * @return [type] [description]
 	 */
 	public function getNormalTopCategory()
 	{
-		$where = [
-			'parent_id' => 0,
-			'status' => 1
-		];
-		$order = [
-			'sort' => 'ASC',
-			'id' => 'DESC'
-		];
+		$where = ['parent_id' => 0, 'status' => 1];
 		$field = ['id', 'name', 'sort', 'parent_id', 'create_time'];
+		$order = ['sort' => 'asc', 'id' => 'desc'];
 
 		return $this->where($where)->field($field)->order($order)->select();
 	}
@@ -43,14 +28,8 @@ class Category extends Model
 	 */
 	public function getCategory($parent_id = 0)
 	{
-		$where = [
-			'parent_id' => $parent_id,
-			'status' => ['egt', 0]
-		];
-		$order = [
-			'sort' => 'ASC',
-			'id' => 'DESC'
-		];
+		$where = ['parent_id' => $parent_id,'status' => ['egt', 0]];
+		$order = ['sort' => 'ASC','id' => 'DESC'];
 		$field = ['id', 'name', 'sort',  'status', 'parent_id', 'create_time'];
 
 		return $this->where($where)->field($field)->order($order)->paginate();
@@ -62,14 +41,8 @@ class Category extends Model
 	 */
 	public function getNormalCategoryByParentId($parent_id = 0)
 	{
-		$where = [
-			'parent_id' => $parent_id,
-			'status' => 1
-		];
-		$order = [
-			'sort' => 'ASC',
-			'id' => 'DESC'
-		];
+		$where = ['parent_id' => $parent_id,'status' => 1];
+		$order = ['sort' => 'asc','id' => 'desc'];
 		$field = ['id', 'name', 'sort', 'parent_id', 'create_time'];
 
 		return $this->where($where)->field($field)->order($order)->select();

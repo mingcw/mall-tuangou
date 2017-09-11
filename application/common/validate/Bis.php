@@ -11,7 +11,7 @@ class Bis extends Validate
 	// 验证规则
     protected $rule = [
         ['name', 'require', '商户名称不能为空'],
-        ['name', 'max:25', '商户名称不能超过25个字符'],
+        ['name', 'max:60', '商户名称不能超过60个字符'],
         ['city_id', 'require', '城市ID不能为空'],
         ['city_id', 'number', '城市ID必须是数字'],
         ['se_city_id', 'require', '二级城市ID不能为空'],

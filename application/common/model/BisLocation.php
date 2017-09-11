@@ -7,19 +7,24 @@ use think\Model;
 /**
  * 商户门店模型
  */
-class BisLocation extends Model
+class BisLocation extends Common
 {
-	// 自动完成
-    protected $auto = [];
-    protected $insert = ['status' => 0, 'sort' => 100];
-    protected $update = [];
+    /**
+     * 根据商户ID获取正常的门店信息
+     * @param  [type] $bisId [description]
+     * @return [type]        [description]
+     */
+    public function getNormalLocatinByBisId($bisId)
+    {
+        $where = ['bis_id' => $bisId , 'status' => 1];
+        $field = ['id', 'name', 'create_time', 'is_main', 'status'];
+        $order = 'id desc';
 
-    // 自动维护时间戳
-    protected $autoWriteTimestamp = true;
-
+        return $this->where($where)->field($field)->order($order)->select();
+    }
 
     /**
-     * 根据状态值获取门店信息
+     * 获取门店信息
      * @param  integer $status -1=>已删除, 0=>待审核, 1=>正常。默认0，取待审核列表
      * @return [type]          [description]
      */
@@ -36,9 +41,9 @@ class BisLocation extends Model
      * 根据商户ID获取门店信息
      * @return [type]          [description]
      */
-    public function getLocationByBisId($id)
+    public function getLocationByBisId($bisID)
     {
-        $where = ['bis_id' => $id];
+        $where = ['bis_id' => $bisID];
         $field = ['id', 'name', 'create_time', 'is_main', 'status'];
         $order = 'id desc';
 

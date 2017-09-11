@@ -146,13 +146,12 @@ function getSeCityName($cityPath){
 /**
  * 获取二级分类名
  * @param  string $categoryPath 格式字符串："一级分类ID,二级城市ID|二级分类ID|..." 或 "一级分类ID"
- * @return [type]            [description]
+ * @return html            [description]
  */
 function getSeCategoryName($categoryPath){
     if(empty($categoryPath)){
         return '';
     }
-
     if(strpos($categoryPath, ',') === false){ //只有一级分类
         return '';
     }
@@ -165,11 +164,7 @@ function getSeCategoryName($categoryPath){
         return '<span>' . $name . '</span>';
     }
     else{ // 多个二级分类
-        $arr = explode('|', $$str);
-        $seCategoryId = array();
-        foreach ($arr as $v) {
-            $seCategoryId[] = $v;
-        }
+        $seCategoryId = explode('|', $$str);
         $name = model('Category')->where(['id' => ['in' => $seCategoryId]])->column('name');
         $count = count($name);
         foreach ($name as $k => $v) {
