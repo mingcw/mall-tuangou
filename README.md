@@ -6,13 +6,19 @@
 
 # 说明
 
-1. 扩展类库目录`extend`下封装[百度地图API](http://lbsyun.baidu.com/)和邮件服务类（使用[PHPMailer](https://github.com/PHPMailer/PHPMailer)）
+1. 扩展类库目录`extend`下封装个人类库
+
+	[百度地图API](http://lbsyun.baidu.com/)
+
+	邮件服务类（使用[PHPMailer](https://github.com/PHPMailer/PHPMailer)）
 
 2. 使用到的第三方依赖均使用`Composer`管理
 
 	[PHPMailer](https://github.com/PHPMailer/PHPMailer)
 
-3. `application/extra/mail.php.example` 是邮件服务的相关参数，去掉`.example`后缀即可
+3. 邮件服务相关配置
+
+	`application/extra/mail.php.example` 是邮件服务的相关参数，去掉`.example`后缀即可
 
 4. 部分前端资源现未上传
 
