@@ -3,7 +3,7 @@ namespace app\bis\controller;
 use think\Controller;
 
 /**
- * 团购管理控制器
+ * 团购商品控制器
  */
 class Deal extends Common
 {
@@ -26,6 +26,7 @@ class Deal extends Common
     {
         // 获取登录商户ID
         $bisId = $this->getLoginBis()->bis_id;
+       
         // 获取该商户所有团购商品
         $deal = $this->model->getDealByBisId($bisId);
         return $this->fetch('', ['deal' => $deal]);
@@ -154,7 +155,7 @@ EOF;
     }
 
     /**
-     * 修改门店状态值（下架）
+     * 修改商品状态值（下架）
      * @return [type] [description]
      */
     public function status()
