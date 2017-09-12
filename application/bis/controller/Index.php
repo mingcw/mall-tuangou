@@ -15,4 +15,9 @@ class Index extends Common
     {
         return $this->fetch();
     }
+
+    public function welcome()
+    {
+    	return '<h2>' . config('web.web_name') . '商户中心欢迎您！</h2>';
+    }
 }
