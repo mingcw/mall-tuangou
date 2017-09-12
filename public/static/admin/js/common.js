@@ -39,10 +39,10 @@ function o2o_del(url,id){
 
 /**
  * 异步排序
- * @param  {Object} )                                          {	var        postData     [description]
- * @param  {[type]} 1000);		}		else{			layer.msg(result.msg, {icon:       5});		}	} [description]
- * @param  {[type]} 'json');}                                 [description]
- * @return {[type]}                                            [description]
+ * @param  {Object} [description]
+ * @param  {[type]} [description]
+ * @param  {[type]} [description]
+ * @return {[type]} [description]
  */
 $('.ajax-sort').change(function () {
 	var postData = {
@@ -65,7 +65,7 @@ $('.ajax-sort').change(function () {
 
 /**
  * 异步获取二级城市
- * @param  {[type]} ) {}          [description]
+ * @param  {[type]}   [description]
  * @return {[type]}   [description]
  */
 $('.cityId').change(function () {
@@ -97,7 +97,7 @@ $('.cityId').change(function () {
 
 /**
  * 异步获取分类
- * @param  {[type]} ) {}          [description]
+ * @param  {[type]} ) [description]
  * @return {[type]}   [description]
  */
 $('.categoryId').change(function () {
@@ -135,7 +135,7 @@ var ok = {
 
 /**
  * 异步获取经纬度
- * @param  {[type]} ) {}          [description]
+ * @param  {[type]} ) [description]
  * @return {[type]}   [description]
  */
 $('.maptag').click(function () {
@@ -159,7 +159,7 @@ $('.maptag').click(function () {
 
 /**
  * 异步验证用户名
- * @param  {[type]} ) {}          [description]
+ * @param  {[type]} ) [description]
  * @return {[type]}   [description]
  */
 $('input[name="username"]').blur(function () {
@@ -182,7 +182,7 @@ $('input[name="username"]').blur(function () {
 
 /**
  * 商户注册前端验证
- * @param  {[type]} ) {}          [description]
+ * @param  {[type]} ) [description]
  * @return {[type]}   [description]
  */
 $('#regis').submit(function () {
