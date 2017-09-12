@@ -27,6 +27,8 @@
 
 5. 商户模块的`Session`用`Redis`存储，配置参数在商户模块配置文件`application/bis/config.php`
 
+6. 数据库表结构做了微调
+
 ## 必要的说明
 
 1. 部分前端资源现未上传
