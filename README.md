@@ -12,7 +12,7 @@
 2. 扩展类库目录`extend`下封装个人类库
 
 	* 地图服务类`extend/Map.php`：使用[百度地图API](http://lbsyun.baidu.com/)实现
-	* 邮件服务类`extend/Mail.php`：使用[PHPMailer](https://github.com/PHPMailer/PHPMailer)）实现，相关配置在扩展配置目录`application/extra/mail.php.example`文件 ，拷贝后去掉`.example`后缀。详细配置参考[点这里](https://github.com/PHPMailer/PHPMailer/blob/master/class.phpmailer.php)
+	* 邮件服务类`extend/Mail.php`：使用[PHPMailer](https://github.com/PHPMailer/PHPMailer)实现，相关配置在扩展配置目录`application/extra/mail.php.example`文件 ，拷贝后去掉`.example`后缀。详细配置参考[点这里](https://github.com/PHPMailer/PHPMailer/blob/master/class.phpmailer.php)
 
 3. 过滤非法数据
 	
