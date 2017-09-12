@@ -9,6 +9,7 @@
 1. 使用到的`PHP`第三方依赖均使用`Composer`管理
 
     * [PHPMailer](https://github.com/PHPMailer/PHPMailer)
+
 2. 扩展类库目录`extend`下封装个人类库
 
     * 地图服务类`extend/Map.php`：使用[百度地图API](http://lbsyun.baidu.com/)实现
