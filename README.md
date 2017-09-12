@@ -6,14 +6,13 @@
 
 ## 整理和优化
 
-1. 扩展类库目录`extend`下封装个人类库
-
-	* 地图服务类`extend/Map.php`：使用[百度地图API](http://lbsyun.baidu.com/)实现
-	* 邮件服务类`extend/Mail.php`：使用[PHPMailer](https://github.com/PHPMailer/PHPMailer)）实现
-
-2. 使用到的`PHP`第三方依赖均使用`Composer`管理
+1. 使用到的`PHP`第三方依赖均使用`Composer`管理
 
 	* [PHPMailer](https://github.com/PHPMailer/PHPMailer)
+2. 扩展类库目录`extend`下封装个人类库
+
+	* 地图服务类`extend/Map.php`：使用[百度地图API](http://lbsyun.baidu.com/)实现
+	* 邮件服务类`extend/Mail.php`：使用[PHPMailer](https://github.com/PHPMailer/PHPMailer)）实现，相关配置在扩展配置目录`application/extra/mail.php.example`文件 ，拷贝后去掉`.example`后缀。详细配置参考[点这里](https://github.com/PHPMailer/PHPMailer/blob/master/class.phpmailer.php)
 
 3. 过滤非法数据
 	
@@ -30,11 +29,7 @@
 
 ## 必要的说明
 
-1. 邮件服务类相关配置
-
-	* `application/extra/mail.php.example` 是邮件服务的参数配置文件，拷贝后去掉`.example`后缀。详细配置参考[点这里](https://github.com/PHPMailer/PHPMailer/blob/master/class.phpmailer.php)
-
-2. 部分前端资源现未上传
+1. 部分前端资源现未上传
 
 	* 后台模板框架`H-ui.admin`所需文件未上传（太大），所以`public/static/admin/h-ui-admin`目录下为空
 
