@@ -12,7 +12,7 @@
 2. 扩展类库目录`extend`下封装个人类库
 
 	* 地图服务类`extend/Map.php`：使用[百度地图API](http://lbsyun.baidu.com/)实现
-	* 邮件服务类`extend/Mail.php`：使用[PHPMailer](https://github.com/PHPMailer/PHPMailer)）实现，相关配置在扩展配置目录`application/extra/mail.php.example`文件 ，拷贝后去掉`.example`后缀。详细配置参考[点这里](https://github.com/PHPMailer/PHPMailer/blob/master/class.phpmailer.php)
+	* 邮件服务类`extend/Mail.php`：使用[PHPMailer](https://github.com/PHPMailer/PHPMailer)实现，相关配置在扩展配置目录`application/extra/mail.php.example`文件 ，拷贝后去掉`.example`后缀。详细配置参考[点这里](https://github.com/PHPMailer/PHPMailer/blob/master/class.phpmailer.php)
 
 3. 过滤非法数据
 	
@@ -25,7 +25,7 @@
 
 4. 个人的所有自定义函数在`application/common.php`文件
 
-5. 商户模块的`Session`用`Redis`存储，配置参数在`application/bis/config.php`文件
+5. 商户模块的`Session`用`Redis`存储，配置参数在商户模块配置文件`application/bis/config.php`
 
 ## 必要的说明
 
