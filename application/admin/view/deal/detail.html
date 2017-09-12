@@ -105,13 +105,13 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">团购描述：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <script id="editor"  type="text/plain" name="description" style="width:80%;height:300px;">{$deal.description}</script> 
+                <script id="editor"  type="text/plain" name="description" style="width:80%;height:300px;">{$deal.description|html_entity_decode}</script> 
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">购买须知：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <script id="editor2"  type="text/plain" name="notes" style="width:80%;height:300px;">{$deal.notes}</script> 
+                <script id="editor2"  type="text/plain" name="notes" style="width:80%;height:300px;">{$deal.notes|html_entity_decode}</script> 
             </div>
         </div>
     </form>

@@ -44,7 +44,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">商户介绍：</label>
             <div class="formControls col-xs-8 col-sm-9"> 
-                <script id="editor1"  type="text/plain" name="description" style="width:80%;height:300px;">{$bis.description}</script> 
+                <script id="editor1"  type="text/plain" name="description" style="width:80%;height:300px;">{$bis.description|html_entity_decode}</script> 
             </div>
         </div>
         <div class="row cl">
@@ -130,7 +130,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">门店简介：</label>
             <div class="formControls col-xs-8 col-sm-9"> 
-                <script id="editor"  type="text/plain" name="content" style="width:80%;height:300px;">{$bisLocation.introduce}</script> 
+                <script id="editor"  type="text/plain" name="content" style="width:80%;height:300px;">{$bisLocation.introduce|html_entity_decode}</script> 
             </div>
         </div>
 
