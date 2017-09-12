@@ -71,12 +71,11 @@ class Location extends Common
                 'category_id' => $data['category_id'],
                 'category_path' => empty($data['se_category_id']) ? $data['category_id'] : $data['category_id'] . ',' . implode('|',$data['se_category_id']),
             ];
-            $bisLocationModel = model('BisLocation');
-            $result = $bisLocationModel->save($locationData);
+            $result = $this->model->save($locationData);
             if($result === false){
                 $this->error('分店申请失败，请重试');
             }
-            $locationId = $bisLocationModel->getLastInsId();
+            $locationId = $this->model->getLastInsId();
 
             // 邮件通知
             $mail = new \Mail;
@@ -91,7 +90,7 @@ class Location extends Common
 EOF;
             $mail->sendMail($email, $username, $title, $content);
 
-            $this->success('分店申请成功，请等待审核结果', url('location/index'));
+            $this->success('分店添加成功，请等待审核结果', url('location/index'));
         }
         else{
             // 一级城市
@@ -121,7 +120,7 @@ EOF;
         }
 
         $field = ['id', 'name', 'status'];
-        $location = model('BisLocation')->where(['id' => $data['id']])->field($field)->find();
+        $location = $this->model->where(['id' => $data['id']])->field($field)->find();
         return $this->fetch('', ['location' => $location]);
     }
 
@@ -135,21 +134,21 @@ EOF;
         if(!$id){
             $this->error('页面不存在');
         }
-
-        // 一级城市
-        $citys = model('City')->getNormalCitysByParentId();
-       
-        // 一级分类
-        $category = model('Category')->getNormalCategoryByParentId();
-        
+   
         // 门店信息
         $field = ['is_main', 'api_address', 'bis_id', 'x_point', 'y_point', 'bank_account', 'sort', 'status', 'create_time', 'update_time'];
-        $bisLocation = model('BisLocation')->where(['id' => $id])->field($field, true)->find();
+        $bisLocation = $this->model->where(['id' => $id])->field($field, true)->find();
+
+        // 所属一级城市
+        $city = model('City')->getCityNameById($bisLocation->city_id);
+ 
+        // 所属一级分类
+        $category = model('Category')->getCategoryNameById($bisLocation->category_id);
 
         return $this->fetch('', [
+            'bisLocation' => $bisLocation,
+            'city' => $city,
             'category' => $category,
-            'citys' => $citys,
-            'bisLocation' => $bisLocation
         ]);
     }
 

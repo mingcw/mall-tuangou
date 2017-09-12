@@ -6,7 +6,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分店名称：</label>
             <div class="formControls col-xs-8 col-sm-3">
-                <input type="text" class="input-text" value="{$bisLocation.name}" placeholder="" id="" name="name">
+                <input type="text" readonly class="input-text" value="{$bisLocation.name}" placeholder="" id="" name="name">
             </div>
         </div>
         
@@ -15,10 +15,7 @@
             <div class="formControls col-xs-8 col-sm-2"> 
                 <span class="select-box">
                 <select name="city_id" class="select cityId">
-                    <option value="0">--请选择--</option>
-                    {foreach $citys as $v}
-                        <option value="{$v.id}"  {if condition="$bisLocation.city_id eq $v.id"}selected="selected"{/if}>{$v.name}</option>
-                    {/foreach}
+                    <option>{$city}</option>
                 </select>
                 </span>
             </div>
@@ -48,10 +45,7 @@
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属分类：</label>
             <div class="formControls col-xs-8 col-sm-3"> <span class="select-box">
                 <select name="category_id" class="select categoryId">
-                    <option value="0">--请选择--</option>
-                    {foreach $category as $v}
-                        <option value="{$v.id}"  {if condition="$bisLocation.category_id eq $v.id"}selected="selected"{/if}>{$v.name}</option>
-                    {/foreach}
+                    <option>{$category}</option>
                 </select>
                 </span>
             </div>
@@ -67,25 +61,25 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">地址：</label>
             <div class="formControls col-xs-8 col-sm-3">
-                <input type="text" class="input-text" value="{$bisLocation.address}" placeholder="" id="" name="address">
+                <input type="text" readonly class="input-text" value="{$bisLocation.address}" placeholder="" id="" name="address">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">电话:</label>
             <div class="formControls col-xs-8 col-sm-3">
-                <input type="text" class="input-text" value="{$bisLocation.tel}" placeholder="" id="" name="tel">
+                <input type="text" readonly class="input-text" value="{$bisLocation.tel}" placeholder="" id="" name="tel">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">联系人:</label>
             <div class="formControls col-xs-8 col-sm-3">
-                <input type="text" class="input-text" value="{$bisLocation.contact_user}" placeholder="" id="" name="contact">
+                <input type="text" readonly class="input-text" value="{$bisLocation.contact_user}" placeholder="" id="" name="contact">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">营业时间:</label>
             <div class="formControls col-xs-8 col-sm-3">
-                <input type="text" class="input-text" value="{$bisLocation.open_time}" placeholder="" id="" name="open_time">
+                <input type="text" readonly class="input-text" value="{$bisLocation.open_time}" placeholder="" id="" name="open_time">
             </div>
         </div>
     </form>

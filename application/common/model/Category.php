@@ -47,4 +47,14 @@ class Category extends Common
 
         return $this->where($where)->field($field)->order($order)->select();
     }
+
+    /**
+     * 通过ID获取分类名
+     * @param  integer $id [description]
+     * @return [type]             [description]
+     */
+     public function getCategoryNameById($id)
+     {
+        return $this->where(['id' => $id])->value('name');
+     }  
 }

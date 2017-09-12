@@ -61,20 +61,20 @@ class Location extends Controller
             $this->error('页面不存在');
         }
 
-        // 一级城市
-        $citys = model('City')->getNormalCitysByParentId();
-       
-        // 一级分类
-        $category = model('Category')->getNormalCategoryByParentId();
-        
         // 门店信息
         $field = ['is_main', 'api_address', 'bis_id', 'x_point', 'y_point', 'bank_account', 'sort', 'status', 'create_time', 'update_time'];
         $bisLocation = model('BisLocation')->where(['id' => $id])->field($field, true)->find();
 
+        // 所属一级城市
+        $city = model('City')->getCityNameByid($bisLocation->city_id);
+       
+        // 所属一级分类
+        $category = model('Category')->getCategoryNameById($bisLocation->category_id);
+
         return $this->fetch('', [
+            'bisLocation' => $bisLocation,
             'category' => $category,
-            'citys' => $citys,
-            'bisLocation' => $bisLocation
+            'city' => $city,
         ]);
     }
 

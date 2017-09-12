@@ -52,30 +52,31 @@ class Bis extends Controller
             $this->error('页面不存在');
         }
 
-        // 一级城市
-        $citys = model('City')->getNormalCitysByParentId();
-       
-        // 一级分类
-        $category = model('Category')->getNormalCategoryByParentId();
-
         // 商户信息
         $field = ['money', 'sort', 'status', 'create_time', 'update_time'];
         $bis = model('Bis')->where(['id' => $id])->field($field, true)->find();
         if(!$bis['id']){
             $this->error('页面不存在');
         }
-        
+
         // 总店信息
         $field = ['is_main', 'api_address', 'sort', 'status', 'create_time', 'update_time'];
         $bisLocation = model('BisLocation')->where(['bis_id' => $id, 'is_main' => 1])->field($field, true)->find();
-       
+
+        // 商户所属一级城市
+        $city = model('City')->getCityNameById($bisLocation->city_id);
+        
+        // 总店所属一级分类
+        $category = model('Category')->getCategoryNameById($bisLocation->category_id);
+        
         // 账号信息
         $field = ['password', 'code', 'last_login_ip', 'last_login_time', 'is_main', 'sort', 'status', 'create_time', 'update_time'];
         $bisAccount = model('BisAccount')->where(['bis_id' => $id, 'is_main' => 1])->field($field, true)->find();
+       
 
         return $this->fetch('', [
             'category' => $category,
-            'citys' => $citys,
+            'city' => $city,
             'bis' => $bis,
             'bisLocation' => $bisLocation,
             'bisAccount' => $bisAccount

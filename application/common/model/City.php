@@ -22,4 +22,14 @@ class City extends Common
 
         return $this->where($where)->field($field)->order($order)->select();
     }
+
+    /**
+     * 通过ID获取城市名
+     * @param  integer $id [description]
+     * @return [type]             [description]
+     */
+     public function getCityNameById($id)
+     {
+        return $this->where(['id' => $id])->value('name');
+     }      
 }

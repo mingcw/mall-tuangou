@@ -108,6 +108,22 @@ function locationStatus($location, $status){
 }
 
 /**
+ * 获取团购商品的审核结果
+ * @param  integer $status 状态值：-1已删除，0待审核，1成功，2未通过
+ * @return [type]          [description]
+ */
+function dealStatus($deal, $status){
+    $str = [
+        -1 => '抱歉，您的团购商品【' . $deal . '】提交材料不符合平台方规则，已被<strong>删除<strong>！',
+        0  => '您的团购商品申请【' . $deal . '】正在等待审核，请留意邮件通知!',
+        1  => '恭喜，您的团购商品【' . $deal . '】已通过审核!',
+        2  => '抱歉，您的团购商品【' . $deal . '】提交材料不符合条件，请重新提交!'
+    ];
+
+    return $str[$status];
+}
+
+/**
  * 通用分页html结构（common.css渲染样式）
  * @param  [type] $obj [description]
  * @return [type]      [description]
@@ -116,8 +132,7 @@ function paginate($model) {
     if(!$model){
         return '';
     }
-
-    // $params = request()->param(); // 获取url参数 ->appends($params)
+    
     return '<div class="cl pd-5 bg-1 bk-gray mt-20 tp5">' . $model->render() . '</div>';
 }
 
@@ -145,34 +160,55 @@ function getSeCityName($cityPath){
 
 /**
  * 获取二级分类名
- * @param  string $categoryPath 格式字符串："一级分类ID,二级城市ID|二级分类ID|..." 或 "一级分类ID"
+ * @param  string $categoryPath 格式字符串："一级分类ID,二级分类ID|二级分类ID|..." 或 "一级分类ID" 或“二级分类ID,二级分类ID,...”
+ * @param  int    $hasFirst     是否含有一级分类。默认1，含有。
  * @return html            [description]
  */
-function getSeCategoryName($categoryPath){
+function getSeCategoryName($categoryPath, $hasFirst = 1){
     if(empty($categoryPath)){
         return '';
     }
-    if(strpos($categoryPath, ',') === false){ //只有一级分类
-        return '';
-    }
 
-    // 取得二级分类串
-    $str = explode(',', $categoryPath)[1];
-
-    if(strpos($str, '|') === false){ // 一个二级分类
-        $name = model('Category')->where(['id' => $str])->value('name');
-        return '<span>' . $name . '</span>';
-    }
-    else{ // 多个二级分类
-        $seCategoryId = explode('|', $$str);
-        $name = model('Category')->where(['id' => ['in' => $seCategoryId]])->column('name');
-        $count = count($name);
-        foreach ($name as $k => $v) {
-            $name .= '<span>' . $v . '</span>';
-            ($k != $count - 1) && $name .= ',&nbsp;';
+    if($hasFirst){ // 含一级分类："一级分类ID,二级分类ID|二级分类ID|..." 或 "一级分类ID" 
+        if(strpos($categoryPath, ',') === false){ //只有一级分类
+            return '';
         }
-        return $name;
+
+        // 取得二级分类串
+        $str = explode(',', $categoryPath)[1];
+
+        if(strpos($str, '|') === false){ // 一个二级分类
+            $name = model('Category')->where(['id' => $str])->value('name');
+            return '<span>' . $name . '</span>';
+        }
+        else{ // 多个二级分类
+            $seCategoryId = explode('|', $str);
+            $name = model('Category')->where(['id' => ['in', $seCategoryId]])->column('name');
+            $count = count($name);
+            foreach ($name as $k => $v) {
+                $name .= '<span>' . $v . '</span>';
+                ($k != $count - 1) && $name .= ',&nbsp;';
+            }
+            return $name;
+        }
     }
+    else{ // 都是二级分类：“二级分类ID,二级分类ID,...”
+        if(strpos($categoryPath, ',') === false){ // 一个二级分类
+            $name = model('Category')->where(['id' => $categoryPath])->value('name');
+            return $name;
+        }
+        else{ //多个二级分类
+            $seCategoryId = explode(',', $categoryPath);
+            $name = model('Category')->where(['id' => ['in', $seCategoryId]])->column('name');
+            $count = count($name);
+            foreach ($name as $k => $v) {
+                $name .= '<span>' . $v . '</span>';
+                ($k != $count - 1) && $name .= ',&nbsp;';
+            }
+            return $name;
+        }
+    }
+    
 }
 
 /**
