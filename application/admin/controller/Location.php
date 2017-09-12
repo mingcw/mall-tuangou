@@ -104,7 +104,15 @@ class Location extends Controller
             $this->error($msg . '失败，请重试');
         }
         else{
+            // 邮件通知
+            $mail = new \Mail;
+            
+            $email = model('Bis')->where(['id' => $data['id']])->value('email');
+            $username = model('BisAccount')->where(['bis_id' => $data['id']])->value('username');
+            $title = config('web.web_name') . '门店审核通知';
+            $content = $username . '，' . locationStatus((int)$data['status']);
 
+            $mail->sendMail($email, $username, $title, $content);
             $this->success($msg . '成功');
         }
     }
