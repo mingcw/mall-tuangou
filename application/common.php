@@ -93,15 +93,15 @@ function bisStatus($status){
 
 /**
  * 获取门店的审核结果
- * @param  integer $status 状态值：-1已删除，0待审核，1成功，2未通过
+ * @param  integer $status 状态值：-1已下架，0待审核，1成功，2未通过
  * @return [type]          [description]
  */
-function locationStatus($location, $status){
+function locationStatus($status){
     $str = [
-        -1 => '抱歉，您的门店【' . $location . '】申请不符合平台方规则，已被<strong>删除<strong>！',
-        0  => '您的门店申请【' . $location . '】正在等待审核，请留意邮件通知!',
-        1  => '恭喜，您的门店申请【' . $location . '】已通过!',
-        2  => '抱歉，您的门店申请【' . $location . '】提交材料不符合条件，请重新提交!'
+        -1 => '抱歉，您的门店提交材料不符合平台方规则，已下架！',
+        0  => '您的门店申请正在等待审核，请留意邮件通知!',
+        1  => '恭喜，您的门店申请已通过!',
+        2  => '抱歉，您的门店申请提交材料不符合条件，请重新提交!'
     ];
 
     return $str[$status];
@@ -109,15 +109,15 @@ function locationStatus($location, $status){
 
 /**
  * 获取团购商品的审核结果
- * @param  integer $status 状态值：-1已删除，0待审核，1成功，2未通过
+ * @param  integer $status 状态值：-1已下架，0待审核，1成功，2未通过
  * @return [type]          [description]
  */
-function dealStatus($deal, $status){
+function dealStatus($status){
     $str = [
-        -1 => '抱歉，您的团购商品【' . $deal . '】提交材料不符合平台方规则，已被<strong>删除<strong>！',
-        0  => '您的团购商品申请【' . $deal . '】正在等待审核，请留意邮件通知!',
-        1  => '恭喜，您的团购商品【' . $deal . '】已通过审核!',
-        2  => '抱歉，您的团购商品【' . $deal . '】提交材料不符合条件，请重新提交!'
+        -1 => '抱歉，您的团购商品提交材料不符合平台方规则，已下架！',
+        0  => '您的团购商品申请正在等待审核，请留意邮件通知!',
+        1  => '恭喜，您的团购商品已通过审核!',
+        2  => '抱歉，您的团购商品提交材料不符合条件，请重新提交!'
     ];
 
     return $str[$status];

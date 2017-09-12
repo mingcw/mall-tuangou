@@ -36,7 +36,7 @@ class Category extends Common
     }
 
     /**
-     * 获取正常分类，根据父ID 
+     * 根据父ID获取正常分类
      * @return [type] [description]
      */
     public function getNormalCategoryByParentId($parent_id = 0)

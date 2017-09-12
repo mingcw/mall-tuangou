@@ -162,7 +162,7 @@ EOF;
         $data = input('get.');
 
         // 数据验证
-        $validate = validate('BisLocation');
+        $validate = validate('Deal');
         if(!$validate->scene('status')->check($data)){
             $this->error($validate->getError());
         }

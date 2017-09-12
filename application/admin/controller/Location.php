@@ -108,11 +108,17 @@ class Location extends Controller
             // 邮件通知
             $mail = new \Mail;
             
-            $email = model('Bis')->where(['id' => $data['id']])->value('email');
-            $username = model('BisAccount')->where(['bis_id' => $data['id']])->value('username');
-            $title = config('web.web_name') . '门店审核通知';
-            $content = $username . '，' . locationStatus((int)$data['status']);
-
+            $location = $this->model->where(['id' => $data['id']])->field(['name', 'bis_id'])->find();
+            $email = model('Bis')->where(['id' => $location->bis_id])->value('email');
+            $username = model('BisAccount')->where(['bis_id' => $location->bis_id])->value('username');
+            $title = config('web.web_name') . '门店最新状态通知';
+            $statusText = locationStatus((int)$data['status']);
+            $content = <<<EOF
+<div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">
+<p>您好，{$username}！</p>
+<p>关于您的门店【{$location->name}】，最新状态通知如下：</p>
+<p style="color: #f60;">{$statusText}</p></div>
+EOF;
             $mail->sendMail($email, $username, $title, $content);
             $this->success($msg . '成功');
         }

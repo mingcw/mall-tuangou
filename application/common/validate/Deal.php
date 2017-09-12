@@ -10,6 +10,8 @@ class Deal extends Validate
 {
     // 验证规则
     protected $rule = [
+        ['id', 'number', 'ID必须是数字'],
+        ['status', 'number', '状态值必须是数字'],
         ['name', 'require', '团购名称不能为空'],
         ['name', 'max:50', '团购名称不能超过50个字符'],
         ['city_id', 'number', '所属城市ID必须是数字'],
@@ -33,6 +35,6 @@ class Deal extends Validate
     // 验证场景
     protected $scene = [
         'add'  =>  ['name','city_id', 'category_id', 'image',  'start_time', 'end_time', 'total_count', 'origin_price', 'current_price', 'coupons_begin_time', 'coupons_end_time', 'notes', 'description'],
-        'status' => ['status'],
+        'status' => ['id', 'status'],
     ];
 }

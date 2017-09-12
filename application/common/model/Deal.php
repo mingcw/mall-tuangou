@@ -39,4 +39,28 @@ class Deal extends Common
 
         return model('BisLocation')->where(['id' => ['in', $locationIds]])->column('name');
     }
+
+    /**
+     * 通过where条件获取正常的商品信息
+     * @return [type] [description]
+     */
+    public function getNormalDealsByWhere($where)
+    {
+        $where['status'] = 1;
+        $order = 'id desc';
+        $field = ['id', 'name', 'category_id', 'city_id', 'sell_count', 'start_time', 'end_time', 'create_time', 'status'];
+        return $this->where($where)->field($field)->order($order)->paginate();
+    }
+
+    /**
+     * 通过状态值获取商品信息
+     * @return [type] [description]
+     */
+    public function getDealsByStatus($status = 0)
+    {
+        $where = ['status' => $status];
+        $order = 'id desc';
+        $field = ['id', 'name', 'category_id', 'city_id', 'sell_count', 'start_time', 'end_time', 'create_time', 'status'];
+        return $this->where($where)->field($field)->order($order)->paginate();
+    }
 }

@@ -63,7 +63,7 @@ class Location extends Common
                 'y_point' => $lngLat['result']['location']['lat'],
                 'bis_id' => $bisId,
                 'open_time' => $data['open_time'],
-                'introduce' => empty($data['content'])?'':$data['content'],
+                'introduce' => empty($data['content']) ? '' : $data['content'],
                 'is_main' => 0, // 分店
                 'api_address' => $data['address'],
                 'city_id' => $data['city_id'],
