@@ -3,7 +3,7 @@ namespace app\bis\controller;
 use think\Controller;
 
 /**
- * 团购商品控制器
+ * 团购商品管理控制器
  */
 class Deal extends Common
 {
