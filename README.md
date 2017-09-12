@@ -16,7 +16,7 @@
 
 3. 过滤非法数据
 	
-	* 几乎所有`CRUD`操作均使用了验证器`Validate`，统一整合在公共验证器`application/common/validate.php`文件
+	* 几乎所有`CRUD`操作均使用了验证器`Validate`，统一整合在公共模块验证器目录下`application/common/validate`
 
 3. SQL优化
 
