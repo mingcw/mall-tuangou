@@ -37,9 +37,10 @@ class Location extends Controller
      */
     public function apply()
     {
-        $location = $this->model->getLocationByStatus(0); //已下架
+        $location = $this->model->getLocationByStatus(); //待审核
         return $this->fetch('', ['location' => $location]);
     }
+    
     /**
      * 已下架门店
      * @return [type] [description]
