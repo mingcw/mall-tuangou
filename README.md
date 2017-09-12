@@ -14,6 +14,8 @@
 	* 地图服务类`extend/Map.php`：使用[百度地图API](http://lbsyun.baidu.com/)实现
 	* 邮件服务类`extend/Mail.php`：使用[PHPMailer](https://github.com/PHPMailer/PHPMailer)实现，相关配置在扩展配置目录`application/extra/mail.php.example`文件 ，拷贝后去掉`.example`后缀。详细配置参考[点这里](https://github.com/PHPMailer/PHPMailer/blob/master/class.phpmailer.php)
 
+3. 商户模块中，有关门店新增、团购商品新增，涉及到需要审核的，均使用了邮件通知
+
 3. 过滤非法数据
 	
 	* 几乎所有`CRUD`操作均使用了验证器`Validate`，统一整合在公共模块验证器目录下`application/common/validate`
