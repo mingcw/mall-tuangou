@@ -44,7 +44,7 @@ class Deal extends Common
             if(!$validate->scene('add')->check($data)){
                 $this->error($validate->getError());
             }
-
+halt($data);
             // 入库
             $bisAccount = $this->getLoginBis();
             $location = model('BisLocation')->where(['id' => $data['location_ids'][0]])->field(['x_point', 'y_point'])->find();
@@ -53,14 +53,14 @@ class Deal extends Common
                 'category_id' => $data['category_id'],
                 'se_category_id' => empty($data['se_category_id']) ? '' : implode(',',$data['se_category_id']),
                 'bis_id' => $bisAccount->bis_id,
-                'location_ids' => empty($data['location_ids'])?'':implode(',',$data['location_ids']),
+                'location_ids' => empty($data['location_ids']) ? '' : implode(',',$data['location_ids']),
                 'image' => $data['image'],
                 'description' => $data['description'],
                 'start_time' => strtotime($data['start_time']),
                 'end_time' => strtotime($data['end_time']),
                 'origin_price' => $data['origin_price'],
                 'current_price' => $data['current_price'],
-                'city_id' => $data['city_id'],
+                'city_id' => empty($data['se_city_id']) ? $data['city_id'] : $data['se_city_id'],
                 'total_count' => $data['total_count'],
                 'coupons_start_time' => strtotime($data['coupons_begin_time']),
                 'coupons_end_time' => strtotime($data['coupons_end_time']),
