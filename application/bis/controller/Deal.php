@@ -143,7 +143,6 @@ EOF;
         $category = model('Category')->getCategoryNameByid($deal->category_id);
 
         // 所属门店
-        $bisId = $this->getLoginBis()->bis_id;
         $locations = $this->model->getLocationsByDealId($id);
 
         return $this->fetch('', [
