@@ -25,7 +25,7 @@
 
 4. 个人的所有自定义函数在`application/common.php`文件
 
-5. 商户模块的`Session`用`Redis`存储，配置参数在`application/bis/config.php`文件
+5. 商户模块的`Session`用`Redis`存储，配置参数在商户模块配置文件`application/bis/config.php`
 
 ## 必要的说明
 
