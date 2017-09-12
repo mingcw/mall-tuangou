@@ -44,7 +44,7 @@ class Deal extends Common
             if(!$validate->scene('add')->check($data)){
                 $this->error($validate->getError());
             }
-halt($data);
+
             // 入库
             $bisAccount = $this->getLoginBis();
             $location = model('BisLocation')->where(['id' => $data['location_ids'][0]])->field(['x_point', 'y_point'])->find();
@@ -69,7 +69,7 @@ halt($data);
                 'bis_account_id' => $bisAccount->id,
                 'notes' => $data['notes'],
             ];
-            $result = $this->model->save($locationData);
+            $result = $this->model->save($saveData);
             if($result === false){
                 $this->error('申请失败，请重试');
             }
@@ -84,7 +84,7 @@ halt($data);
             $url = request()->domain() . url('bis/deal/waiting', ['id' => $dealId]);
             $content = <<<EOF
 <div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">
-<p>您好，{$data['contact']}</p>
+<p>您好，{$username}</p>
 <p>您新添加的商品正在等待审核, 请点击链接 <a href="{$url}" target="_blank" style="color: #f60;">查看</a> 最终审核结果</p></div>
 EOF;
             $mail->sendMail($email, $username, $title, $content);

@@ -85,7 +85,7 @@ class Location extends Common
             $url = request()->domain() . url('bis/location/waiting', ['id' => $locationId, 'is_main' => 0]);
             $content = <<<EOF
 <div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">
-<p>您好，{$data['contact']}</p>
+<p>您好，{$username}</p>
 <p>您的分店申请正在等待审核, 请点击链接 <a href="{$url}" target="_blank" style="color: #f60;">查看</a> 最终审核结果</p></div>
 EOF;
             $mail->sendMail($email, $username, $title, $content);
