@@ -20,8 +20,8 @@
     * 在`application/extra`目录下有几个扩展配置文件：
 
         * featured.php - 推荐位配置文件
-        * mail.php - 邮件服务类配置文件
-        * map.php - 百度地图服务类配置文件
+        * mail.php.example - 邮件服务类配置文件（拷贝后去掉`.example`后缀）
+        * map.php.example - 百度地图服务类配置文件（拷贝后去掉`.example`后缀）
         * web.php - 站点配置文件
 
 4. 邮件通知
