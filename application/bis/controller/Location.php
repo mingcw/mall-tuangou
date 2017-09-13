@@ -45,13 +45,13 @@ class Location extends Common
                 return $this->result('', 1, '无法获取数据，或者匹配的地址不精确');
             }
 
-            // 验证门店信息
+            // 验证
             $validate = validate('BisLocation');
             if(!$validate->scene('add')->check($data)){
                 $this->error($validate->getError());
             }
 
-            // 门店信息入库
+            // 入库
             $bisId = $this->getLoginBis()->bis_id;
             $locationData = [
                 'name' => $data['name'],

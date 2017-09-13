@@ -91,36 +91,37 @@ class Bis extends Controller
     {
         $data = input('get.');
         
-        // 数据验证（因为商户、门店、账号表需要验证的数据和类型都一样，所以只验证一张表数据即可）
+        // 验证（因为商户、门店、账号表需要验证的数据和类型都一样，所以只验证一张表数据即可）
         $validate = validate('Bis');
         if(!$validate->scene('status')->check($data)){
             $this->error($validate->getError());
         }
 
+        // 入库
+        $result1 = $this->model->where(['id' => $data['id']])->update(['status' => (int)$data['status']]);
+        $result2 = model('BisLocation')->where(['bis_id' => $data['id'], 'is_main' => 1])->update(['status' => (int)$data['status']]);
+        $result3 = model('BisAccount')->where(['bis_id' => $data['id'], 'is_main' => 1])->update(['status' => (int)$data['status']]);      
         switch ($data['status']) {
             case -1: $msg = '删除'; break;
             default: $msg = '状态修改';
         }
-
-        $result1 = $this->model->where(['id' => $data['id']])->update(['status' => (int)$data['status']]);
-        $result2 = model('BisLocation')->where(['bis_id' => $data['id'], 'is_main' => 1])->update(['status' => (int)$data['status']]);
-        $result3 = model('BisAccount')->where(['bis_id' => $data['id'], 'is_main' => 1])->update(['status' => (int)$data['status']]);
-
         if($result1 === false || $result2 === false || $result3 === false){
             $this->error($msg . '失败，请重试');
         }
-        else{
-            // 邮件通知
-            $mail = new \Mail;
-            
-            $email = model('Bis')->where(['id' => $data['id']])->value('email');
-            $username = model('BisAccount')->where(['bis_id' => $data['id']])->value('username');
-            $title = config('web.web_name') . '入驻审核通知';
-            $content = $username . '，' . bisStatus((int)$data['status']);
 
-            $mail->sendMail($email, $username, $title, $content);
-            $this->success($msg . '成功');
-        }
+        // 邮件通知
+        $mail = new \Mail;
+        $email = model('Bis')->where(['id' => $data['id']])->value('email');
+        $username = model('BisAccount')->where(['bis_id' => $data['id']])->value('username');
+        $title = config('web.web_name') . '商户入驻申请通知';
+        $statusText = bisStatus((int)$data['status']);
+        $content = <<<EOF
+<div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">
+<p>您好，{$username}！</p>
+<p>关于您的商户入驻申请【{$deal->name}】，最新状态通知如下：</p>
+<p style="color: #f60;">{$statusText}</p></div>
+EOF;
+        $mail->sendMail($email, $username, $title, $content);
+        $this->success($msg . '成功');
     }
-
 }
