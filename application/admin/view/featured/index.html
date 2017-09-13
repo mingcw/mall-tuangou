@@ -1,0 +1,55 @@
+<!--包含头部文件-->
+{include file="common/header" /}
+<body>
+<nav class="breadcrumb"></nav>
+<div class="page-container">
+    <div class="text-c"> 
+        <form method="get" action="">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>选择推荐位类型：</label>
+            <div class="formControls col-xs-8 col-sm-3">
+                <span class="select-box">
+                    <select name="type" class="select">
+                        <option value="0">--请选择--</option>
+                        {foreach $typeArr as $k => $v}
+                            <option value="{$k}" {if condition="$k eq $type"}selected="selected"{/if}>{$v}</option>
+                        {/foreach}
+                    </select>
+                </span>
+            </div>
+            <button class="btn btn-success" type="submit"><i class="Hui-iconfont"></i> 搜索</button>
+        </form>
+    </div>
+    <div class="mt-20">
+        <table class="table table-border table-bordered table-bg table-hover table-sort">
+            <thead>
+                <tr class="text-c">
+                    <th width="40">ID</th>
+                    <th width="100">标题</th>
+                    <th width="100">url</th>
+                    <th width="100">新增时间</th>
+                    <th width="30">发布状态</th>
+                    <th width="30">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $featureds as $v}
+                    <tr class="text-c">
+                        <td>{$v.id}</td>
+                        <td><a href="{$v.url}" target="_blank">{$v.title}</a></td>
+                        <td>{$v.url}</td>
+                        <td class="text-c">{$v.create_time}</td>
+                        <td class="td-status">
+                            <a href="{:url('featured/status', ['id' => $v.id, 'status' => $v.status == 1 ? 0: 1])}" title="点击修改状态">{$v.status|status}</a>
+                        </td>
+                        <td class="td-manage">
+                            <a style="text-decoration:none" class="ml-5" onClick="o2o_del('{:url('featured/status', ['id' => $v.id, 'status' => -1])}')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                        </td>
+                    </tr>
+                    {/foreach}
+            </tbody>
+        </table>
+    </div>
+    {:paginate($featureds)}
+</div>
+<!--包含尾部文件-->
+{include file="common/footer" /}

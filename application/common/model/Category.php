@@ -1,4 +1,5 @@
 <?php
+
 namespace app\common\model;
 
 use think\Model;
@@ -28,8 +29,8 @@ class Category extends Common
      */
     public function getCategory($parent_id = 0)
     {
-        $where = ['parent_id' => $parent_id,'status' => ['egt', 0]];
-        $order = ['sort' => 'ASC','id' => 'DESC'];
+        $where = ['parent_id' => $parent_id, 'status' => ['egt', 0]];
+        $order = ['sort' => 'ASC', 'id' => 'DESC'];
         $field = ['id', 'name', 'sort',  'status', 'parent_id', 'create_time'];
 
         return $this->where($where)->field($field)->order($order)->paginate();
@@ -41,8 +42,8 @@ class Category extends Common
      */
     public function getNormalCategoryByParentId($parent_id = 0)
     {
-        $where = ['parent_id' => $parent_id,'status' => 1];
-        $order = ['sort' => 'asc','id' => 'desc'];
+        $where = ['parent_id' => $parent_id, 'status' => 1];
+        $order = ['sort' => 'asc', 'id' => 'desc'];
         $field = ['id', 'name', 'sort', 'parent_id', 'create_time'];
 
         return $this->where($where)->field($field)->order($order)->select();

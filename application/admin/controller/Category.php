@@ -8,7 +8,7 @@ use think\Request;
 /**
  * 主平台分类管理控制器
  */
-class Category extends Controller
+class Category extends Common
 {
     protected $model;
 
@@ -137,30 +137,6 @@ class Category extends Controller
         }
         else{
             $this->result($_SERVER['HTTP_REFERER'], 1, '修改失败'); // 失败，code 为 1
-        }
-    }
-
-    /**
-     * 修改状态值
-     * @return [type] [description]
-     */
-    public function status()
-    {
-        $data = input('get.');
-
-        // 数据验证
-        $validate = validate('Category');
-        if(!$validate->scene('status')->check($data)){
-            $this->error($validate->getError());
-        }
-
-        $msg = ($data['status'] == -1 ) ? '删除' : '状态修改';
-        $result = $this->model->save(['status' => (int)$data['status']], ['id' => $data['id']]);
-        if($result === false){
-            $this->error($msg . '失败，请重试');
-        }
-        else{
-            $this->success($msg . '成功');
         }
     }
 }
