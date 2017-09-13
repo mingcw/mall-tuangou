@@ -72,4 +72,43 @@ class Featured extends Common
         }
     }
 
+    /**
+     * 编辑推荐位
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function edit()
+    {
+        if(request()->isPost()){ // 处理表单
+            $data = input('post.');
+
+            $validate = validate('Featured');
+            if(!$validate->scene('edit')->check($data)){
+                $this->error($validate->getError());
+            }
+
+            $result = $this->model->save($data, ['id' => $data['id']]);
+            if($result === false){
+                $this->error('修改失败，请重试...');
+            }
+
+            $this->success('修改成功', url('featured/index'));
+        }
+        else{
+            if(!$id = input('get.id', 0, 'intval')){
+                $this->error('页面不存在');
+            }
+            
+            $field = ['id', 'type', 'title', 'image' , 'url', 'description'];
+            $featured = $this->model->field($field)->find($id);
+
+            $type = config('featured.featured_type'); // 推荐位类型（在前台页面的位置标识）
+
+            return $this->fetch('', [
+                'featured' => $featured,
+                'type' => $type,
+            ]);
+        }
+    }
 }

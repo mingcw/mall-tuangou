@@ -27,6 +27,7 @@ class Featured extends Validate
     // 验证场景
     protected $scene = [
         'add'  =>  ['title', 'image', 'type', 'url', 'description'],
+        'edit' => ['title', 'image', 'type', 'url', 'description'],
         'status'  =>  ['id', 'status'],
     ];
 }
