@@ -22,9 +22,8 @@ class Category extends Common
     }
 
     /**
-     * 显示分类列表
-     *
-     * @return \think\Response
+     * 所有分类
+     * @return [type] [description]
      */
     public function index()
     {
@@ -35,86 +34,71 @@ class Category extends Common
     }
 
     /**
-     * 显示分类表单添加页
-     *
-     * @return \think\Response
+     * 添加分类
+     * @return [type] [description]
      */
-    public function create()
+    public function add()
     {
-        $data = $this->model->getNormalTopCategory();
-        
-        return $this->fetch('', ['data' => $data]);
-    }
+        if(request()->isPost()){ // 处理表单
+            $data = input('post.');
 
-    /**
-     * 保存新建的分类
-     *
-     * @param  \think\Request  $request
-     * @return \think\Response
-     */
-    public function save(Request $request)
-    {
-        $data = input('post.');
+            $validate = validate('Category');
+            if(!$validate->scene('create')->check($data)){
+                $this->error($validate->getError());
+            }
 
-        $validate = validate('Category');
-        if(!$validate->scene('create')->check($data)){
-            $this->error($validate->getError());
-        }
+            $result = $this->model->save($data);
+            if($result === false){
+                $this->error('添加失败，请重试...');
+            }
 
-        if($this->model->save($data)){
             $this->success('添加成功');
         }
-        else{
-            $this->error('添加失败，请重试...');
+        else{ // 显示页面
+            $data = $this->model->getNormalTopCategory();
+            return $this->fetch('', ['data' => $data]);
         }
     }
 
     /**
-     * 显示编辑分类表单页.
+     * 编辑分类
      *
      * @param  int  $id
      * @return \think\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        if(($id = intval($id)) < 1){
-            $this->error('页面不存在');
-        }
-        
-        $field = ['id', 'name', 'parent_id'];
-        $thisCategory = $this->model->field($field)->find($id);
-        $data = $this->model->getNormalTopCategory();
+        if(request()->isPost()){ // 处理表单
+            if(!$request->isPost()){
+                $this->error('页面不存在');
+            }
 
-        $this->assign('thisCategory', $thisCategory);
-        $this->assign('data', $data);
-        return $this->fetch();
-    }
+            $data = input('post.');
 
-    /**
-     * 保存更新的分类
-     *
-     * @param  \think\Request  $request
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function update(Request $request, $id)
-    {
-        if(!$request->isPost()){
-            $this->error('页面不存在');
-        }
+            $validate = validate('Category');
+            if(!$validate->scene('edit')->check($data)){
+                $this->error($validate->getError());
+            }
 
-        $data = input('post.');
+            $result = $this->model->save($data, ['id' => $id]);
+            if($result == false){
+                $this->error('修改失败，请重试...');
+            }
 
-        $validate = validate('Category');
-        if(!$validate->scene('edit')->check($data)){
-            $this->error($validate->getError());
-        }
-
-        if($this->model->save($data, ['id' => $id])){
             $this->success('修改成功');
         }
-        else{
-            $this->error('修改失败，请重试...');
+        else{ // 显示页面
+            if(!$id = input('get.id', 0, 'intval')){
+                $this->error('页面不存在');
+            }
+            
+            $field = ['id', 'name', 'parent_id'];
+            $thisCategory = $this->model->field($field)->find($id);
+            $data = $this->model->getNormalTopCategory();
+
+            $this->assign('thisCategory', $thisCategory);
+            $this->assign('data', $data);
+            return $this->fetch();
         }
     }
 

@@ -10,7 +10,6 @@ use think\Request;
  */
 class Featured extends Common
 {
-
     protected $model;
 
     /**
@@ -53,13 +52,11 @@ class Featured extends Common
         if(request()->isPost()){ // 处理表单
             $data = input('post.');
 
-            // 验证
             $validate = validate('Featured');
             if(!$validate->scene('add')->check($data)){
                 $this->error($validate->getError());
             }
 
-            // 入库
             $result = $this->model->save($data);
             if($result === false){
                 $this->error('添加失败，请重试');
@@ -95,7 +92,7 @@ class Featured extends Common
 
             $this->success('修改成功', url('featured/index'));
         }
-        else{
+        else{ // 显示页面
             if(!$id = input('get.id', 0, 'intval')){
                 $this->error('页面不存在');
             }
