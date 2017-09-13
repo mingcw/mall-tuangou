@@ -4,11 +4,14 @@
 
 > 正在更新...
 
+<br>
+
 ## 整理和优化
 
 1. 使用到的`PHP`第三方依赖均使用`Composer`管理
 
-    * [PHPMailer](https://github.com/PHPMailer/PHPMailer)
+    * [PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)
+    * [top-think/think-captcha](https://github.com/top-think/think-captcha)
 
 2. 扩展类库目录`extend`下封装个人类库
 
@@ -42,20 +45,33 @@
 
 7. 个人的所有自定义函数在`application/common.php`文件
 
+    * 定义了较多的自定义函数，譬如加密解密函数，统一了加密方式和逻辑。
+
 8. 商户模块的`Session`用`Redis`存储，配置参数在商户模块配置文件`application/bis/config.php`
 
-9. 部分Bug修正
+9. 原教材的部分Bug修正
 
     * 商户模块中添加商品，如果只选择一级城市，提交的城市ID会被二级城市默认0覆盖
-    * ......
+    * 印象里还有一、两处，不太记得了
 
-10. 数据库表结构做了微调
+10. 原教材的部分不合理逻辑修正（个人看法）
+
+    * 主平台模块的推荐位列表不直接显示所有类型的推荐位，需要手动切换
+    * 服务端返回数据的函数封装，直接返回了PHP数组，至少在我的机器上始终报错，前端JS接收异常
+    * 商户模块的前台用户注册验证码部分直接修改了`vendor`目录里`think-captcha`包的源代码
+    * 印象里还有一、两处，不太记得了
+
+11. 数据库表结构做了微调
+
+<br>
 
 ## 必要的说明
 
 1. 部分前端资源现未上传
 
     * 后台模板框架`H-ui.admin`所需文件未上传（太大），所以`public/static/admin/h-ui-admin`目录下为空
+
+<br>
 
 ## 测试账号密码
 
