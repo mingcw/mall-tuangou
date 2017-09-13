@@ -106,7 +106,6 @@ class Location extends Controller
 
         // 邮件通知
         $mail = new \Mail;
-        
         $location = $this->model->where(['id' => $data['id']])->field(['name', 'bis_id'])->find();
         $email = model('Bis')->where(['id' => $location->bis_id])->value('email');
         $username = model('BisAccount')->where(['bis_id' => $location->bis_id])->value('username');
