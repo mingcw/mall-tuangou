@@ -12,35 +12,44 @@
 
 2. 扩展类库目录`extend`下封装个人类库
 
-    * 地图服务类`extend/Map.php`：使用[百度地图API](http://lbsyun.baidu.com/)实现
+    * 百度地图服务类`extend/Map.php`：使用[百度地图API](http://lbsyun.baidu.com/)实现，相关配置在扩展配置目录`application/extra/map.php.example`文件，拷贝后去掉`.example`后缀。详细配置参考百度开放平台相关服务。
     * 邮件服务类`extend/Mail.php`：使用[PHPMailer](https://github.com/PHPMailer/PHPMailer)实现，相关配置在扩展配置目录`application/extra/mail.php.example`文件 ，拷贝后去掉`.example`后缀。详细配置参考[点这里](https://github.com/PHPMailer/PHPMailer/blob/master/class.phpmailer.php)
 
-3. 邮件通知
+3. 扩展配置文件
+
+    * 在`application/extra`目录下有几个扩展配置文件：
+
+        * featured.php - 推荐位配置文件
+        * mail.php - 邮件服务类配置文件
+        * map.php - 百度地图服务类配置文件
+        * web.php - 站点配置文件
+
+4. 邮件通知
    
     * 商户模块中，有关商户注册、门店新增、团购商品新增，需要平台方审核，使用邮件通知告知商户
 
     * 主平台模块中，有关商户审核、门店申请、团购商品提交，以及状态值修改，涉及审核结果的及时通知，使用邮件通知告知商户
 
-4. 过滤非法数据
+5. 过滤非法数据
     
     * 几乎所有`CRUD`操作均使用了验证器`Validate`，统一整合在公共模块验证器目录下`application/common/validate`
 
-5. SQL优化
+6. SQL优化
 
     * 数据表操作主要使用`DB`的方法
     * 字段过滤查询，主要使用`DB`的`field`方法
     * ......
 
-6. 个人的所有自定义函数在`application/common.php`文件
+7. 个人的所有自定义函数在`application/common.php`文件
 
-7. 商户模块的`Session`用`Redis`存储，配置参数在商户模块配置文件`application/bis/config.php`
+8. 商户模块的`Session`用`Redis`存储，配置参数在商户模块配置文件`application/bis/config.php`
 
-8. 部分Bug修正
+9. 部分Bug修正
 
     * 商户模块中添加商品，如果只选择一级城市，提交的城市ID会被二级城市默认0覆盖
     * ......
 
-9. 数据库表结构做了微调
+10. 数据库表结构做了微调
 
 ## 必要的说明
 

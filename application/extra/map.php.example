@@ -3,8 +3,8 @@
  * 百度地图API相关配置
  */
 return [
-    'domain_name' =>       'http://api.map.baidu.com',         // api 域名
-    'ak'          =>       'K8pARWOdgyHnHpY1mbzSK8DGzC4PPLWh', // ak 秘钥
+    'domain_name' =>       'http://api.map.baidu.com',                 // api域名
+    'ak'          =>       '填写你在百度地图开放平台创建应用得到的AK', // ak 秘钥
 
      // Geocoding API配置
     'geocoder'    =>       'geocoder',       // Geocoding服务名
