@@ -62,9 +62,7 @@ class Category extends Common
 
     /**
      * 编辑分类
-     *
-     * @param  int  $id
-     * @return \think\Response
+     * @return [type] [description]
      */
     public function edit()
     {
