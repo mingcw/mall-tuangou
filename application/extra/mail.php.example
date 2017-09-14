@@ -13,7 +13,7 @@ return [
     'username' => 'example@example.com',       // SMTP 用户名
     'password' => 'yourpassword',              // SMTP 密码。126邮箱使用客户端授权码，QQ邮箱用独立密码
     'from' => 'example@example.com',           // 发件人邮箱
-    'from_name' => config('web.web_name'),     // 发件人名称
+    'from_name' => 'MALL团购网',               // 发件人名称
     'reply_to' => '',                          // 回复邮箱的地址。留空取发件人邮箱
     'reply_to_name' => '',                     // 名称。留空取发件人名称
 ];
