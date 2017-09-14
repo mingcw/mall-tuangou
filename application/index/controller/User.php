@@ -50,7 +50,7 @@ class User extends Controller
             $where = ['id' => $user->id];
             $model->update($updateData, $where);
             
-            return $this->success('登录成功', url('index/index'));
+            return $this->success('登录成功', url('/'));
         }
         else{
             session(null, 'index');
