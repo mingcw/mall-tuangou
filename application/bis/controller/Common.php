@@ -38,7 +38,7 @@ class Common extends Controller
      */
     public function getLoginBis(){
         if(!$this->bis){
-            $this->bis = session('bisAccount');
+            $this->bis = session('bisAccount', '', 'bis');
         }
         return $this->bis;
     }

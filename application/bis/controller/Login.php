@@ -32,9 +32,9 @@ class Login extends Controller
             else if(encrypt($data['password'], $bis->code) != $bis->password){
                 $this->error('密码不正确');
             }
-            
+
             // 写session
-            session('bisAccount', $bis); //session前缀默认读取商户模块配置参数
+            session('bisAccount', $bis, 'bis');
 
             // 更新数据库
             $updateData = [
@@ -47,10 +47,7 @@ class Login extends Controller
             return $this->success('登录成功', url('index/index'));
         }
         else{
-            $bisAccount = session('bisAccount');
-            if($bisAccount && $bisAccount->id){
-                return $this->redirect('index/index');
-            }
+            session(null, 'bis');
             return $this->fetch();
         }
     }
@@ -60,7 +57,7 @@ class Login extends Controller
      * @return [type] [description]
      */
     public function logout(){
-        session(null);
+        session(null, 'bis');
         $this->redirect('login/index');
     }
 }
