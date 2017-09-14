@@ -65,7 +65,7 @@ class User extends Controller
     public function logout()
     {
         session(null, 'index');
-        $this->redirect($_REQUEST['HTTP_REFERER']);
+        $this->redirect('user/login');
     }
 
     /**
