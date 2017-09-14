@@ -16,7 +16,7 @@ class City extends Common
      */
     public function getNormalCitysByParentId($parent_id = 0)
     {
-        $where = ['status' => 1,'parent_id' => $parent_id];
+        $where = ['status' => 1, 'parent_id' => $parent_id];
         $field = ['id', 'name'];
         $order = 'id desc';
 
@@ -28,19 +28,19 @@ class City extends Common
      * @param  integer $id [description]
      * @return [type]      [description]
      */
-     public function getCityNameById($id)
-     {
+    public function getCityNameById($id)
+    {
         return $this->where(['id' => $id])->value('name');
-     }
+    }
 
-     /**
+    /**
      * 通过所有正常的城市信息
      * @param  integer $id [description]
      * @return [type]      [description]
      */
-     public function getAllNormalCitys()
-     {
-        $field = ['id', 'name', 'is_main', 'parent_id'];
+    public function getAllNormalCitys()
+    {
+        $field = ['id', 'name', 'enname', 'is_default', 'parent_id'];
         return $this->where(['status' => 1])->field($field)->select();
-     }     
+    }
 }
