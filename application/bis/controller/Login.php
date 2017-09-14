@@ -24,7 +24,7 @@ class Login extends Controller
             
             $model = model('BisAccount');
             $where = ['username' => $data['username']];
-            $field = ['sort', 'create_time', 'update_time'];
+            $field = ['id', 'sort', 'create_time', 'update_time'];
             $bis = $model->where($where)->field($field, true)->find();
             if(!$bis || $bis->status != 1){
                 $this->error('用户名不存在或未通过审核');
@@ -41,7 +41,7 @@ class Login extends Controller
                 'last_login_ip' => request()->ip(),
                 'last_login_time' => time(),
             ];
-            $where = ['username' => $data['username']];
+            $where = ['id' => $bis->id];
             $model->update($updateData, $where);
             
             return $this->success('登录成功', url('index/index'));
