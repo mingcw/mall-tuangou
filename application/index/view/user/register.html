@@ -15,13 +15,13 @@
     <div class="wrapper">
         <div class="head">
             <ul>
-                <li><a href="/"><img src="__STATIC__/index/image/logo.png" alt="logo"></a></li>
+                <li><a href="{:url('/')}"><img src="__STATIC__/index/image/logo.png" alt="logo"></a></li>
                 <li class="divider"></li>
                 <li><a href="/"></a></li>
             </ul>
             <div class="login-link">
                 <span>我已注册，现在就</span>
-                <a href="login.html">登录</a>
+                <a href="{:url('user/login')}">登录</a>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
             <form class="content-form" method="post" action="{:url('user/register')}">
                 <p class="pass-form-item">
                     <label class="pass-label">用户名</label>
-                    <input type="text" name="userName" class="pass-text-input" placeholder="请设置用户名（不可修改）">
+                    <input type="text" name="username" class="pass-text-input" placeholder="请设置用户名（不可修改）">
                 </p>
                 <p class="pass-form-item">
                     <label class="pass-label">邮箱号</label>
