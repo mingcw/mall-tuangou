@@ -13,7 +13,7 @@ class BisAccount extends Validate
         ['username', 'require', '用户名不能为空'],
         ['username', 'max:16', '用户名不能超过16位字符'],
         ['password', 'require', '密码不能为空'],
-        ['password', 'regex:[_a-zA-Z]\w{4,15}', '密码由5-16位数字、字母、下划线构成，首字母不能是数字'],
+        ['password', 'regex:[_a-zA-Z]\w{4,15}', '密码由5-16位数字、字母、下划线构成，首字符不能是数字'],
     ];
 
     // 验证场景
