@@ -43,7 +43,7 @@ class Category extends Common
             $data = input('post.');
 
             $validate = validate('Category');
-            if(!$validate->scene('create')->check($data)){
+            if(!$validate->scene('add')->check($data)){
                 $this->error($validate->getError());
             }
 

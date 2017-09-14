@@ -23,7 +23,7 @@ class Category extends Validate
 
     // 验证场景
     protected $scene = [
-        'create'  =>  ['name','parent_id'],
+        'add'  =>  ['name','parent_id'],
         'edit' => ['id', 'name', 'parent_id'], 
         'sort' => ['id', 'sort'],
         'status' => ['id', 'status']
