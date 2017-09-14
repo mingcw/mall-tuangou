@@ -9,9 +9,6 @@ use think\Model;
  */
 class Featured extends Common
 {
-    // 自动完成
-    protected $insert = ['status' => 0, 'sort' => 100];
-
     /**
      * 根据类型获取推荐位信息
      * @return [type] [description]
