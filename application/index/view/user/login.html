@@ -31,25 +31,28 @@
                 <div class="login-area">
                     <div class="title">登录</div>
                     <div class="login">
-                        <form>
+                        <form action="{:url('user/login')}" method="post">
                             <div class="ordinaryLogin">
-
                                 <p class="pass-form-item">
                                     <label class="pass-label">用户名</label>
-                                    <input type="text" name="userName" class="pass-text-input" placeholder="用户名">
+                                    <input type="text" name="username" class="pass-text-input" placeholder="请输入用户名">
                                 </p>
                                 <p class="pass-form-item">
                                     <label class="pass-label">密码</label>
-                                    <input type="password" name="password" class="pass-text-input" placeholder="密码">
+                                    <input type="password" name="password" class="pass-text-input" placeholder="请输入密码">
                                 </p>
-
+                                <p class="pass-form-item">
+                                    <label class="pass-label">验证码</label>
+                                    <input type="password" name="verify" class="pass-text-input" placeholder="请输入验证码">
+                                </p>
+                                <p class="pass-form-item">
+                                    <label class="pass-label">&nbsp;</label>
+                                    <img src="/captcha" alt="图像验证码" title="看不清，换一张" onclick="javascript: this.src = '/captcha?' + Math.random()" style="cursor: pointer;">
+                                </p>
                             </div>
-
                             <div class="commonLogin">
                                 <p class="pass-form-item">
                                     <input type="submit" value="登录" class="pass-button">
-
-
                                 </p>
                             </div>
                         </form>

@@ -14,7 +14,58 @@ class User extends Controller
      */
     public function login()
     {
-        return $this->fetch();
+        if(request()->isPost()) {
+            $data = input('post.');
+
+             // 验证
+            if(!trim($data['verify'])){
+                $this->error('验证码不能为空');
+            }
+            if(!captcha_check($data['verify'])){
+                $this->error('验证码有误，请重新输入');
+            }
+            $validate = validate('User');
+            if(!$validate->scene('login')->check($data)){
+                $this->error($validate->getError());
+            }
+            $model = model('User');
+            $where = ['username' => $data['username']];
+            $field = ['id', 'username', 'password', 'code', 'status'];
+            $user = $model->where($where)->field($field)->find();
+            if(!$user || $user->status != 1){
+                $this->error('该用户不存在');
+            }
+            else if(encrypt($data['password'], $user->code) != $user->password){
+                $this->error('密码不正确');
+            }
+
+            // 写session
+            session('user', $user, 'index');
+
+            // 更新数据库
+            $updateData = [
+                'last_login_ip' => request()->ip(),
+                'last_login_time' => time(),
+            ];
+            $where = ['id' => $user->id];
+            $model->update($updateData, $where);
+            
+            return $this->success('登录成功', url('index/index'));
+        }
+        else{
+            session(null, 'index');
+            return $this->fetch();
+        }
+    }
+
+    /**
+     * 退出登录
+     * @return [type] [description]
+     */
+    public function logout()
+    {
+        session(null, 'index');
+        $this->redirect($_REQUEST['HTTP_REFERER']);
     }
 
     /**
@@ -27,6 +78,9 @@ class User extends Controller
             $data = input('post.');
 
             // 验证
+            if(!trim($data['verify'])){
+                $this->error('验证码不能为空');
+            }
             if(!captcha_check($data['verify'])){
                 $this->error('验证码有误，请重新输入');
             }
