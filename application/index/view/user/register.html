@@ -15,9 +15,9 @@
     <div class="wrapper">
         <div class="head">
             <ul>
-                <li><a href="index.html"><img src="__STATIC__/index/image/logo.png" alt="logo"></a></li>
+                <li><a href="/"><img src="__STATIC__/index/image/logo.png" alt="logo"></a></li>
                 <li class="divider"></li>
-                <li><a href="index.html"></a></li>
+                <li><a href="/"></a></li>
             </ul>
             <div class="login-link">
                 <span>我已注册，现在就</span>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="content">
-            <form class="content-form">
+            <form class="content-form" method="post" action="{:url('user/register')}">
                 <p class="pass-form-item">
                     <label class="pass-label">用户名</label>
                     <input type="text" name="userName" class="pass-text-input" placeholder="请设置用户名（不可修改）">
@@ -38,15 +38,19 @@
 
                 <p class="pass-form-item">
                     <label class="pass-label">密码</label>
-                    <input type="text" name="password" class="pass-text-input" placeholder="请设置登录密码">
+                    <input type="password" name="password" class="pass-text-input" placeholder="请设置登录密码">
                 </p>
                 <p class="pass-form-item">
                     <label class="pass-label">确认密码</label>
-                    <input type="text" name="password" class="pass-text-input" placeholder="请确认登录密码">
+                    <input type="password" name="password2" class="pass-text-input" placeholder="请确认登录密码">
                 </p>
                 <p class="pass-form-item">
                     <label class="pass-label">验证码</label>
-                    <input type="text" name="verifyCode" class="pass-text-input " placeholder="请输入验证码">
+                    <input type="text" name="verify" class="pass-text-input " placeholder="请输入验证码">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">&nbsp;</label>
+                    <img src="/captcha" alt="图像验证码" title="看不清，换一张" onclick="javascript: this.src = '/captcha?' + Math.random()" style="cursor: pointer;">
                 </p>
 
                 <p class="pass-form-item">

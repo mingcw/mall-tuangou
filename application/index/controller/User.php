@@ -4,7 +4,7 @@ namespace app\index\controller;
 use think\Controller;
 
 /**
- * 用户控制器
+ * 前台用户控制器
  */
 class User extends Controller
 {
@@ -23,6 +23,17 @@ class User extends Controller
      */
     public function register()
     {
-        return $this->fetch();
+        if(request()->isPost()){
+            $data = input('post.');
+            if(!captcha_check())
+        }
+        else{
+             return $this->fetch();
+        }
+    }
+
+    public function captcha()
+    {
+        $src = captcha_src()
     }
 }
