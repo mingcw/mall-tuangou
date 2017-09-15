@@ -43,16 +43,14 @@ class Mail extends \PHPMailer
 			}
 			else{
 				foreach ($attachment as $file) {
-		            is_file($file) && $this->AddAttachment($file);
-		        }
-	        }       
-	    }
+				    is_file($file) && $this->AddAttachment($file);
+				}
+			}       
+		}
 
 		if(!$this->send()){ // 发送
-		    return $this->ErrorInfo;
+			return $this->ErrorInfo;
 		}
-		else{
-		    return true;
-		}
+		return true;
 	}
 }
