@@ -67,10 +67,6 @@ class Category extends Common
     public function edit()
     {
         if(request()->isPost()){ // 处理表单
-            if(!$request->isPost()){
-                $this->error('页面不存在');
-            }
-
             $data = input('post.');
 
             $validate = validate('Category');
