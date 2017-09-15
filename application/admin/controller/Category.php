@@ -74,7 +74,7 @@ class Category extends Common
                 $this->error($validate->getError());
             }
 
-            $result = $this->model->save($data, ['id' => $id]);
+            $result = $this->model->save($data, ['id' => $data['id']]);
             if($result == false){
                 $this->error('修改失败，请重试...');
             }
