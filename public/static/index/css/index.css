@@ -12,7 +12,7 @@
     margin-left: 226px;
 }
 .top-container .mid-area .slide-holder{
-    height: 259px;
+    height: 299px;
     width: 737px;
     overflow: hidden;
     position: relative;
@@ -67,11 +67,11 @@
     display: block;
 }
 .mid-area .slide-holder .slideshow {
-    height: 259px;
+    height: 299px;
 }
 .mid-area .slide-holder .slideshow li {
     float: left;
-    height: 259px;
+    height: 299px;
     width: 737px;
 }
 .mid-area .slide-holder .slideshow li .ad-pic {
@@ -79,7 +79,8 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    margin: auto;
+    margin: 0;
+    height: 280px;
 }
 .mid-area .list-wrapper {
     float: left;
@@ -128,19 +129,19 @@
 .right-sidebar .right-ad {
     border-left: 1px solid #dfdfdf;
     width: 236px;
-    height: 259px;
+    height: 299px;
     display: block!important;
     position: relative;
     overflow: hidden;
 }
 .right-sidebar .right-ad .slidepic{
     width: 236px;
-    height: 259px;
+    height: 299px;
 }
 .right-sidebar .right-ad .slidepic li {
     position: absolute;
     width: 100%;
-    height: 259px;
+    height: 299px;
     display: inline-block;
 }
 .right-sidebar .right-erweima {
@@ -165,8 +166,8 @@
     position: relative;
 }
 .content-container .floor-content:first-child {
-    margin-top: 13px;
-    padding-top: 17px;
+    margin-top: 0;
+    padding-top: 0;
 }
 .content-container .floor-content .floor-header {
     height: 27px;
@@ -188,7 +189,7 @@
 .content-container .floor-content .floor-header .reco-words li a {
     display: block;
     padding: 0 18px;
-    color: #767676;
+    color: #333;
     border-right: 1px solid #dfdfdf;
     height: 15px;
     line-height: 15px;

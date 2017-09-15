@@ -141,9 +141,10 @@
 }
 .reg-sms {
     width: 258px;
-    height: 208px;
+    height: 248px;
     border: 1px solid #d1eeff;
     background-color: #f5fbff;
+    line-height: 1.98;
     margin-top: 40px;
     float: right;
 }

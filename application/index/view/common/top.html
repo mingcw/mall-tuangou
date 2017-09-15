@@ -15,6 +15,9 @@
                         </ul>
                     </div>
                 </li>
+
+                <li id="i-am-bis"><a href="{:url('bis/login/index')}">我是商家</a></li>
+                <li>|</li>
                 {if condition="$user"}
                     <li><a href="{:url('user/logout')}">退出</a></li>
                     <li><span style="color: #ff318c;">欢迎您，{$user.username}</span></li>

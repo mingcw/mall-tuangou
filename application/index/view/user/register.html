@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="{:url('/')}"><img src="__STATIC__/index/image/logo.png" alt="logo"></a></li>
                 <li class="divider"></li>
-                <li><a href="/"></a></li>
+                <li><a href="/">注册{:config('web.web_name')}账号</a></li>
             </ul>
             <div class="login-link">
                 <span>我已注册，现在就</span>
@@ -57,7 +57,16 @@
                     <input type="submit" value="注册" class="pass-button">
                 </p>
             </form>
-
+            <div class="reg-sms">
+            <h3 class="reg-sms-title">{:config('web.web_name')}温馨提示</h3>
+                <div class="reg-sms-content">
+                    <p class="reg-sms-p reg-sms-p-text">注册本站会员，将表示：</p>
+                    <p class="reg-sms-p reg-sms-p-warn">你同意和遵守本站的相关管理规定</p>
+                    <p class="reg-sms-p reg-sms-p-text">本站严格过滤爬虫账号：</p>
+                    <p class="reg-sms-p reg-sms-p-warn">一旦发现，将永久封号</p>
+                    <p class="reg-sms-p reg-sms-p-last">祝您团购愉快！</p>
+                </div>
+            </div>
         </div>
 
         <div class="foot">

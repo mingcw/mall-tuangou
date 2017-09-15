@@ -13,10 +13,10 @@
     position: relative;
 }
 .header-inner .father li{
-    float: left;
-}
-.header-inner .father li:nth-child(4),.header-inner .father li:nth-child(5),.header-inner .father li:nth-child(6){
     float: right;
+}
+.header-inner .father li:nth-child(1), .header-inner .father li:nth-child(2), .header-inner .father li:nth-child(3){
+    float: left;
 }
 .header-inner .father li{
     line-height: 36px;
@@ -26,7 +26,10 @@
     color: #ccc;
 }
 .header-inner .father li a{
-    color: #8c8c8c;
+    color: #333;
+}
+#i-am-bis a{
+    color: #ff318c;
 }
 .arrow-down-logo{
     display: inline-block;
@@ -75,7 +78,7 @@
     display: block;
 }
 .city-drop-down h3 {
-    color: #73adc9;
+    color: #ff318c;
     margin-bottom: 10px;
     font-size: 100%;
 }
@@ -197,7 +200,7 @@
 }
 .left-menu .first-level{
     padding: 0 20px;
-    height: 51px;
+    height: 55px;
     line-height: 51px;
     overflow: hidden;
     border-bottom: 1px solid #dfdfdf;
@@ -214,7 +217,7 @@
     text-align: left;
 }
 .left-menu .first-level dl .title a{
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
     font-weight: 700;
 }
@@ -226,7 +229,7 @@
     margin-left: 12px;
 }
 .left-menu .first-level dl dd a{
-    color: #999;
+    color: #666;
     font-family: 'Microsoft YaHei';
 }
 .left-menu .first-level dl dd a:hover{
@@ -243,8 +246,8 @@
     top: 0;
     left: 224px;
     padding: 0 0 0 20px;
-    height: 259px;
-    min-height: 259px;
+    height: 299px;
+    min-height: 279px;
     height: auto !important;
     display: none;
 }
@@ -262,7 +265,7 @@
 }
 .left-menu .second-level .section h3 {
     color: #313037;
-    width: 50px;
+    width: 58px;
     margin-bottom: 3px;
     line-height: 15px;
     margin-right: 10px;
@@ -280,6 +283,7 @@
 }
 .left-menu .second-level .section .section-item ul li {
     max-width: 131px;
+    line-height: 16.1px;
 }
 .left-menu .second-level .section ul li {
     display: inline-block;
@@ -291,7 +295,7 @@
     color: #ff4883;
 }
 .left-menu .second-level .section ul li a {
-    color: #949494;
+    color: #666;
     display: block;
     padding-left: 10px;
     overflow: hidden;
@@ -300,7 +304,7 @@
     white-space: nowrap;
 }
 .left-menu .second-level .section ul li a:hover{
-    color: #1b66c7;
+    color: #313bff;
     text-decoration: underline;
 }
 .flexible {
