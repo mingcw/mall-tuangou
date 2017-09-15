@@ -15,7 +15,7 @@ class Featured extends Common
      */
     public function getFeaturedsByType($type)
     {
-        $where = ['status' => ['neq', -1]];
+        $where = ['status' => ['neq', -1]]; // 未删除
         $type && $where['type'] = $type;
         $field = ['id', 'title', 'image' , 'url', 'create_time', 'status'];
         $order = 'id desc';
