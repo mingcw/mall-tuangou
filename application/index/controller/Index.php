@@ -14,6 +14,13 @@ class Index extends Common
      */
     public function index()
     {
-        return $this->fetch();
+    	// 推荐位
+    	$main = model('Featured')->getFeatured(1); // 大图推荐位
+    	$side = model('Featured')->getFeatured(2)[0]; // 右侧广告位
+
+        return $this->fetch('', [
+        	'main' => $main,
+        	'side' => $side,
+        ]);
     }
 }

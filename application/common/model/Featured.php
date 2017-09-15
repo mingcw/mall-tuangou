@@ -22,4 +22,18 @@ class Featured extends Common
 
         return $this->where($where)->field($field)->order($order)->paginate();
     }
+
+    /**
+     * 根据类型获取推荐位信息
+     * @return [type] [description]
+     */
+    public function getFeatured($type)
+    {
+        $where = ['status' => 1]; // 已审核
+        $type && $where['type'] = $type;
+        $field = ['id', 'title', 'image' , 'url', 'description', 'create_time', 'status'];
+        $order = ['sort' => 'asc', 'id' => 'desc'];
+
+        return $this->where($where)->field($field)->order($order)->select();
+    }
 }
