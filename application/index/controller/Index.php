@@ -41,7 +41,7 @@ class Index extends Common
             // 该分类和子类的所有商品
             $cate[$k]['deal'] = $modelDeal->getDealByCategoryCityId(['in', $cateIdArr], $this->city->id);
         }
-        // p($cate);die;
+
         return $this->fetch('', [
             'main' => $main,
             'side' => $side,
