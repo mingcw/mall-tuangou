@@ -73,26 +73,12 @@ class Category extends Common
     }
 
     /**
-     * 获取在表中排序前X的顶级分类
-     * @param  integer $limit 默认取前2条
-     * @return [type]         [description]
-     */
-    public function getTopCateNumberX($limit = 2)
-    {
-        $where = ['status' => 1, 'parent_id' => 0];
-        $order = ['sort' => 'asc', 'id' => 'desc'];
-        $field = ['id', 'name', 'sort', 'parent_id', 'create_time'];
-
-        return $this->where($where)->field($field)->order($order)->limit($limit)->select();
-    }
-
-    /**
      * 根据父ID获取子分类
-     * @param  integer $parentId 父级分类ID
+     * @param  integer $parentId 父级分类ID，默认0取顶级分类
      * @param  integer $limit    默认最多取10个
      * @return [type]            [description]
      */
-    public function getSubCategoryByParentId($parentId = 0, $limit = 10)
+    public function getCategoryByParentId($parentId = 0, $limit = 10)
     {
         $where = ['status' => 1, 'parent_id' => $parentId];
         $order = ['sort' => 'asc', 'id' => 'desc'];

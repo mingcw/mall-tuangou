@@ -4,34 +4,44 @@ namespace app\index\controller;
 use think\Controller;
 
 /**
- * å‰å°é¦–é¡µæ§åˆ¶å™¨
+ * Ç°Ì¨Ê×Ò³¿ØÖÆÆ÷
  */
 class Index extends Common
 {
     /**
-     * é¦–é¡µè§†å›¾
+     * Ê×Ò³ÊÓÍ¼
      * @return [type] [description]
      */
     public function index()
     {
-        // æ¨èä½
+        // ÍÆ¼öÎ»
         $model = model('Featured');
-        $main = $model->getFeatured(1);    // å¤§å›¾æ¨èä½
-        $side = $model->getFeatured(2)[0]; // å³ä¾§å¹¿å‘Šä½
+        $main = $model->getFeatured(1);    // ´óÍ¼ÍÆ¼öÎ»
+        $side = $model->getFeatured(2)[0]; // ÓÒ²à¹ã¸æÎ»
 
-        // æ’åºå‰2çš„é¡¶çº§åˆ†ç±»
-        $cate = model('Category')->getTopCateNumberX(2);
+        // ÅÅĞòÇ°2µÄ¶¥¼¶·ÖÀà
+        $cate = model('Category')->getCategoryByParentId(0, 2);
 
-        // æ¯ä¸ªé¡¶çº§åˆ†ç±»çš„å­çº§åˆ†ç±»å’Œä¸‹å±å•†å“
+        // Ã¿¸ö¶¥¼¶·ÖÀàµÄ×Ó·ÖÀàºÍÏÂÊôÉÌÆ·
         $modelDeal = model('Deal');
         $modelCategory = model('Category');
         $limit = 4;
+        
         foreach ($cate as $k => $v) {
-            $cate[$k]['child'] = $modelCategory->getSubCategoryByParentId($v->id, $limit); // å­çº§åˆ†ç±»ï¼ˆæœ€å¤š4ä¸ªï¼‰
-            
-            $cate[$k]['deal'] = $modelDeal->getNormalDealByCategoryCityId($v->id, $this->city->id);// ä¸‹å±å•†å“
-        }
+             // ×Ó·ÖÀà£¨×î¶à4¸ö£©
+            $cate[$k]['child'] = $modelCategory->getCategoryByParentId($v->id, $limit);
 
+            // ÌáÈ¡×Ó·ÖÀàID 
+            $cateIdArr = [];
+            foreach ($cate[$k]['child'] as $key => $value) {
+                $cateIdArr[] = $value->id;
+            }
+            $cateIdArr[] = $v->id; // ÌáÈ¡¶¥¼¶ID
+
+            // ¸Ã·ÖÀàºÍ×ÓÀàµÄËùÓĞÉÌÆ·
+            $cate[$k]['deal'] = $modelDeal->getDealByCategoryCityId(['in', $cateIdArr], $this->city->id);
+        }
+        // p($cate);die;
         return $this->fetch('', [
             'main' => $main,
             'side' => $side,

@@ -66,21 +66,21 @@ class Deal extends Common
 
     /**
      * 根据分类、城市ID获取团购商品信息
-     * @param  [type]  $categoryId [description]
-     * @param  [type]  $cityId     [description]
-     * @param  integer $limit      [description]
-     * @return [type]              [description]
+     * @param  [type]  $categoryIds [description]
+     * @param  [type]  $cityId      [description]
+     * @param  integer $limit       [description]
+     * @return [type]               [description]
      */
-    public function getNormalDealByCategoryCityId($categoryId, $cityId, $limit = 10){
+    public function getDealByCategoryCityId($categoryIds, $cityId, $limit = 10){
         $where = [
             'end_time' => ['gt', time()],
-            'category_id' => $categoryId,
+            'category_id' => $categoryIds,
             'city_id' => $cityId,
             'status' => 1,
         ];
-        $field = ['id', 'name', 'category_id', 'city_id', 'sell_count', 'start_time', 'end_time', 'create_time', 'status'];
+        $field = ['sort', 'update_time', 'status'];
         $order = ['sort' => 'asc', 'id' => 'desc'];
 
-        return $this->where($where)->field($field)->order($order)->limit($limit)->select();
+        return $this->where($where)->field($field, true)->order($order)->limit($limit)->select();
     }
 }

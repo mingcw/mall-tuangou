@@ -204,7 +204,7 @@ class Deal extends Controller
 <div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">
 <p>您好，{$username}！</p>
 <p>关于您的团购商品【{$deal->name}】，最新状态通知如下：</p>
-<p style="color: #f60;">{$statusText}</p></div>
+<p style="color: #f00;">{$statusText}</p></div>
 EOF;
 
         $mail->sendMail($email, $username, $title, $content);
