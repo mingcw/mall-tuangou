@@ -40,7 +40,7 @@ class Common extends Controller
         $model = model('Category');
         $cate = $model->getAllCategory();
         $cate = $model->unlimitedForlayer($cate);
-        $limit = 5; // 顶级分类最多显示5条
+        $limit = 5; // 最多5条
 
         // 分配数据
         $this->assign('common_citys', $citys);

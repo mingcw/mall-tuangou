@@ -212,7 +212,18 @@ function getSeCategoryName($categoryPath, $hasFirst = 1){
 }
 
 /**
- * 加密运算
+ * 统计门店数
+ * @param  string $locationIds 逗号","分割的ID字符串
+ * @return [type]              [description]
+ */
+function countLocation($locationIds)
+{
+    $arr  = explode(',', $locationIds);
+    return count($arr);
+}
+
+/**
+ * 加密解密运算
  * @param  string   $value 要加密的数据  
  * @param  string   $key   用于加密的KEY
  * @param  integer  $type  默认为1。1:加密，0：解密

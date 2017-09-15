@@ -28,9 +28,10 @@ class Index extends Common
         $limit = 4;
         foreach ($cate as $k => $v) {
             $cate[$k]['deal'] = $modelDeal->getNormalDealByCategoryCityId($v->id, $this->city->id);// 下属商品
-            $cate[$k]['child'] = $modelCategory->getSubCategoryByParentId($v->id, $limit); // 子级分类（4个）
+            $cate[$k]['child'] = $modelCategory->getSubCategoryByParentId($v->id, $limit); // 子级分类（最多4个）
         }
 
+        p($cate);die;
         return $this->fetch('', [
             'main' => $main,
             'side' => $side,
