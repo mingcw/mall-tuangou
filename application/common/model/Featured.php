@@ -10,7 +10,7 @@ use think\Model;
 class Featured extends Common
 {
     /**
-     * 根据类型获取推荐位信息
+     * 根据类型获取推荐位信息（分页）
      * @return [type] [description]
      */
     public function getFeaturedsByType($type)

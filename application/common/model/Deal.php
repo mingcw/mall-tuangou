@@ -10,7 +10,7 @@ use think\Model;
 class Deal extends Common
 {
 	/**
-	* 根据商户ID获取团购商品信息
+	* 根据商户ID获取团购商品信息（分页）
 	* @return [type]          [description]
 	*/
     public function getDealByBisId($bisID)
@@ -41,7 +41,7 @@ class Deal extends Common
     }
 
     /**
-     * 通过where条件获取正常的商品信息
+     * 通过where条件获取正常的商品信息（分页）
      * @return [type] [description]
      */
     public function getNormalDealsByWhere($where)
@@ -53,7 +53,7 @@ class Deal extends Common
     }
 
     /**
-     * 通过状态值获取商品信息
+     * 通过状态值获取商品信息（分页）
      * @return [type] [description]
      */
     public function getDealsByStatus($status = 0)

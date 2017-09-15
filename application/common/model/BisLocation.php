@@ -24,7 +24,7 @@ class BisLocation extends Common
     }
 
     /**
-     * 获取门店信息
+     * 获取门店信息（分页）
      * @param  integer $status -1=>已删除, 0=>待审核, 1=>正常。默认0，取待审核列表
      * @return [type]          [description]
      */
@@ -38,7 +38,7 @@ class BisLocation extends Common
     }
 
     /**
-     * 根据商户ID获取门店信息
+     * 根据商户ID获取门店信息（分页）
      * @return [type]          [description]
      */
     public function getLocationByBisId($bisID)

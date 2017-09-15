@@ -10,7 +10,7 @@ use think\Model;
 class Bis extends Common
 {
     /**
-     * 根据状态值获取商户信息
+     * 根据状态值获取商户信息（分页）
      * @param  integer $status -1=>已删除, 0=>待审核, 1=>正常。默认0，取申请商户列表
      * @return [type]          [description]
      */
