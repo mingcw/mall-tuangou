@@ -100,39 +100,4 @@ class Category extends Common
 
         return $this->where($where)->field($field)->order($order)->limit($limit)->select();
     }
-
-    /**
-     * 无限接分类
-     * @param  array   $cateArr   要递归的数组
-     * @param  string  $name      子级分类在父分类数组中的 key
-     * @param  integer $parent_id 父级分类ID。默认为0，表示顶级分类
-     * @return array              返回多维数组
-     */
-    static public function unlimitedForlayer($cateArr, $name = 'child', $parent_id = 0){
-        $arr = array();
-        foreach($cateArr as $v){
-            if($v['parent_id'] == $parent_id){
-                $v[$name] = self::unlimitedForlayer($cateArr, $name, $v['id']);
-                $arr[] = $v;
-            }
-        }
-        return $arr;
-    }
-
-    /**
-     * 传递父级分类ID返回所有子分类ID
-     * @param  [type] $cate         要递归的数组
-     * @param  [type] $parent_id    父级分类ID
-     * @return [type]       [description]
-     */
-    static public function getChildrenId($cate, $parent_id){
-        $arr = array();
-        foreach($cate as $v){
-            if($v['parent_id'] == $parent_id){
-                $arr[] = $v['id'];
-                $arr = array_merge($arr, self::getChildrenId($cate, $v['id']));
-            }
-        }
-        return $arr;
-    }
 }

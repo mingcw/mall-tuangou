@@ -39,7 +39,7 @@ class Common extends Controller
         // 所有分类 + 递归重组
         $model = model('Category');
         $cate = $model->getAllCategory();
-        $cate = $model->unlimitedForlayer($cate);
+        $cate = unlimitedForlayer($cate);
         $limit = 5; // 最多5条
 
         // 分配数据
