@@ -141,8 +141,9 @@
 .right-sidebar .right-ad .slidepic li {
     position: absolute;
     width: 100%;
-    height: 299px;
+    height: 280px;
     display: inline-block;
+    overflow: hidden;
 }
 .right-sidebar .right-erweima {
     border: 1px solid #dfdfdf;
