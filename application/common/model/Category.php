@@ -118,4 +118,21 @@ class Category extends Common
         }
         return $arr;
     }
+
+    /**
+     * 传递父级分类ID返回所有子分类ID
+     * @param  [type] $cate         要递归的数组
+     * @param  [type] $parent_id    父级分类ID
+     * @return [type]       [description]
+     */
+    static public function getChildrenId($cate, $parent_id){
+        $arr = array();
+        foreach($cate as $v){
+            if($v['parent_id'] == $parent_id){
+                $arr[] = $v['id'];
+                $arr = array_merge($arr, self::getChildrenId($cate, $v['id']));
+            }
+        }
+        return $arr;
+    }
 }
