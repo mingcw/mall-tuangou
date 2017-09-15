@@ -9,7 +9,7 @@ use think\Controller;
 class Common extends Controller
 {
 	/**
-	 * 前台首页用于显示的城市
+	 * 前台首页用于显示的当前城市
 	 * @var [type]
 	 */
 	public $city;
@@ -41,14 +41,13 @@ class Common extends Controller
         $cate = $model->getAllCategory();
         $cate = $model->unlimitedForlayer($cate);
         $limit = 5; // 顶级分类最多显示5条
-// p($cate);die;
 
         // 分配数据
-        $this->assign('citys', $citys);
-        $this->assign('city', $city);
-        $this->assign('user', $user);
-        $this->assign('cate', $cate);
-        $this->assign('limit', $limit);
+        $this->assign('common_citys', $citys);
+        $this->assign('common_city', $city);
+        $this->assign('common_user', $user);
+        $this->assign('common_cate', $cate);
+        $this->assign('common_limit', $limit);
     }
 
     /**

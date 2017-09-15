@@ -2,14 +2,14 @@
     <div class="header-bar">
         <div class="header-inner">
             <ul class="father">
-                <li><a>{$city->name}</a></li>
+                <li><a>{$common_city->name}</a></li>
                 <li>|</li>
                 <li class="city">
                     <a>切换城市<span class="arrow-down-logo"></span></a>
                     <div class="city-drop-down">
                         <h3>热门城市</h3>
                         <ul class="son">
-                            {foreach $citys as $v}
+                            {foreach $common_citys as $v}
                                 <li><a href="{:url('/', ['enname' => $v.enname])}">{$v.name}</a></li>
                             {/foreach}
                         </ul>
@@ -18,7 +18,7 @@
 
                 <li id="i-am-bis"><a href="{:url('bis/login/index')}">我是商家</a></li>
                 <li>|</li>
-                {if condition="$user"}
+                {if condition="$common_user"}
                     <li><a href="{:url('user/logout')}">退出</a></li>
                     <li><span style="color: #ff318c;">欢迎您，{$user.username}</span></li>
                 {else /}
