@@ -9,7 +9,7 @@ use think\Controller;
 class Common extends Controller
 {
 	/**
-	 * 前台首页用于显示的当前城市
+	 * 前台页面用于显示的当前城市
 	 * @var [type]
 	 */
 	public $city;
@@ -30,28 +30,37 @@ class Common extends Controller
         // 所有城市
         $citys = model('City')->getAllNormalCitys();
 
-        // 获取一个用于在前台首页显示的城市
+        // 获取一个用于在前台页面显示的城市
         $city = $this->getCity($citys);
 
         // 登录用户
         $user = $this->getLoginUser();
         
-        // 所有分类 + 递归重组
+        // 所有分类
         $model = model('Category');
         $cate = $model->getAllCategory();
-        $cate = unlimitedForlayer($cate);
-        $limit = 5; // 最多5条
+        $cate = unlimitedForlayer($cate);// 递归重组
 
-        // 分配数据
+        // 取前5条
+        $limit = 5;
+        $cate = array_slice($cate, 0, $limit);
+
+        // 请求中的控制器
+        $controller = strtolower(request()->controller());
+
+        // 页面标题
+        $title = config('web.web_name');
+
         $this->assign('common_citys', $citys);
         $this->assign('common_city', $city);
         $this->assign('common_user', $user);
         $this->assign('common_cate', $cate);
-        $this->assign('common_limit', $limit);
+        $this->assign('common_controller', $controller);
+        $this->assign('common_title', $title);
     }
 
     /**
-     * 获取城市（前台首页默认显示）
+     * 获取城市（在前台页面显示）
      * @param  [type] $citys 所有城市信息
      * @return [type]        返回英文名
      */
