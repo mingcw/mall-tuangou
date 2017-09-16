@@ -86,11 +86,11 @@ class Deal extends Common
 
     /**
      * 根据条件获取团购商品信息
-     * @param  [type] $cateId 所属分类ID数组 'xxx' => id，是一个where条件
+     * @param  [type] $where  where条件数组型
      * @param  [type] $sort   排序类型
      * @return [type]         [description]
      */
-    public function getDealByConditions($cateId = [], $sort)
+    public function getDealByConditions($where = [], $sort)
     {
         // 组装排序条件 $order
         if(!empty($sort['sort_sale'])){
@@ -104,7 +104,26 @@ class Deal extends Common
         }
         $order['id'] = 'desc';
 
+        // 组装 where 条件
+        // 
+        // 提示: MySQL 函数 find_in_set(str, field)
+        // 这个函数可以作为一个where条件查找field字段里含有str的记录,
+        // field字段值由逗号","分割。比like查询更加精确
+        // 
+        // 这里表中的 se_category_id 字段是一个逗号","连接的ID串
+        // 所以Think里 se_category_id = $id 的条件查不到有多个子分类的商品
+
+        // 结合 find_in_set 来组装where条件字符串
+        $whereStr = '';
+        $whereStr .= 'status  = 1 and end_time > ' . time();
+        if(!empty($where['se_category_id'])){
+            $whereStr .= ' and find_in_set(' . $where['se_category_id'] . ', se_category_id)';
+        }
+        if(!empty($where['city_id'])){
+            $whereStr .= ' and city_id = ' . $where['city_id'];
+        }
+
         $field = ['sort', 'update_time', 'status'];
-        return $this->where($cateId)->field($field, true)->order($order)->paginate();
+        return $this->where($whereStr)->field($field, true)->order($order)->paginate();
     }
 }

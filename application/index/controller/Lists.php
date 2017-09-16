@@ -24,13 +24,13 @@ class Lists extends Common
 		$id = input('get.id', 0, 'intval');
 
 
-		// 获取父分类ID $pid，并获取顶或二级的分类id
-		$cateId = [];
+		// 获取父分类ID $pid，并获取顶或二级的分类id $cateId组装到 where 条件
+		$where = [];
 		$field = ['id', 'name', 'parent_id', 'status'];
 		$order = ['sort' => 'asc', 'id' => 'desc'];
 		if(in_array($id, $topIds)){// 顶级分类
 			$pid = $id;
-			$cateId['category_id'] = $id;
+			$where['category_id'] = $id;
 		}
 		else if($id){ // 子级分类
 			$sub = model('Category')->field($field)->order($order)->find($id);
@@ -38,11 +38,12 @@ class Lists extends Common
 				$this->error('页面不存在');
 			}
 			$pid = $sub->parent_id;
-			$cateId['se_category_id'] = $id;
+			$where['se_category_id'] = $id;
 		}
 		else{ // id = 0
 			$pid = 0;
 		}
+		$where['city_id'] = $this->city->id; // 当前城市
 
 		// 获取子级分类
 		$subCates = [];
@@ -72,7 +73,7 @@ class Lists extends Common
 		}
 
 		// 根据以上条件查询商品列表
-		$deals = model('Deal')->getDealByConditions($cateId, $sort);
+		$deals = model('Deal')->getDealByConditions($where, $sort);
 
 		return $this->fetch('', [
 			'topCates' => $topCates,
