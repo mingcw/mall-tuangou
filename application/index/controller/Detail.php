@@ -28,7 +28,7 @@ class Detail extends Common
         $category = model('Category')->field($field)->find($deal->category_id);
 
         // 所属门店
-        $location = model('BisLocation')->getLocationByIds($deal->location_ids);
+        $locations = model('BisLocation')->getLocationByIds($deal->location_ids);
 
         // 距离开始时间多久：x年x月x日x时x分x秒
         $timeHtml = remainTime($deal->start_time);
@@ -40,16 +40,23 @@ class Detail extends Common
         // 所在经纬度
         $lnglat = $deal->x_point . ',' . $deal->y_point;
 
+        // 商家介绍
+        $bisDescription = model('Bis')->where(['id' => $deal->bis_id])->value('description');
+
+        // 当前城市
+        $city = $this->city;
+
         return $this->fetch('', [
             'deal' => $deal,
             'category' => $category,
-            'location' => $location,
+            'locations' => $locations,
             'timeHtml' => $timeHtml,
             'keYiQiangGou' => $keYiQiangGou,
             'overplus' => $overplus,
             'lnglat' => $lnglat,
-            'common_title' => $deal->name,
-            ''
+            'bisDescription' => $bisDescription,
+            'city' => $city,
+            'common_title' => $deal->name, //页面标题
         ]);
     }
     
