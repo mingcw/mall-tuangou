@@ -13,9 +13,9 @@
                         <div class="level-item">
                             <div class="first-level">
                                 <dl>
-                                    <dt class="title"><a href="{:url('list/index', ['id' => $v.id])}" target="_blank">{$v.name}</a></dt>
-                                    <dd><a href="{:url('list/index', ['id' => $v.child[1]['id']])}" target="_blank" class="">{$v.child[0]['name']}</a></dd>
-                                    <dd><a href="{:url('list/index', ['id' => $v.child[1]['id']])}" target="_blank" class="">{$v.child[1]['name']}</a></dd>
+                                    <dt class="title"><a href="{:url('lists/index', ['id' => $v.id])}" target="_blank">{$v.name}</a></dt>
+                                    <dd><a href="{:url('lists/index', ['id' => $v.child[1]['id']])}" target="_blank" class="">{$v.child[0]['name']}</a></dd>
+                                    <dd><a href="{:url('lists/index', ['id' => $v.child[1]['id']])}" target="_blank" class="">{$v.child[1]['name']}</a></dd>
                                 </dl>
                             </div>
                             <div class="second-level">
@@ -24,7 +24,7 @@
                                         <h3>其他分类</h3>
                                         <ul>
                                             {foreach $v.child as $value}
-                                                <li><a href="{:url('list/index', ['id' => $value.id])}" target="_blank">{$value.name}</a></li>
+                                                <li><a href="{:url('lists/index', ['id' => $value.id])}" target="_blank">{$value.name}</a></li>
                                             {/foreach}
                                         </ul>
                                     </div>

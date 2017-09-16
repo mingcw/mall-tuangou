@@ -624,3 +624,8 @@
     margin: 0 auto;
 }
 
+.pagination{float: right; margin-right: 80px;}
+.pagination li{float: left; margin: 0 2px; text-align: center; }
+.pagination::after, .pagination li:after{content: ''; clear: both; visibility: hidden; display: none; }
+.pagination span, .pagination a{padding: 8px 20px; border: 1px solid #ccc; text-align: center; color: #666; }
+.pagination li.active span{background: #ff4883; color: #fff; }

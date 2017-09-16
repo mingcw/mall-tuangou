@@ -134,7 +134,8 @@ function paginate($model) {
         return '';
     }
     
-    return '<div class="cl pd-5 bg-1 bk-gray mt-20 tp5">' . $model->render() . '</div>';
+    $params = request()->param();
+    return '<div class="cl pd-5 bg-1 bk-gray mt-20 tp5">' . $model->appends($params)->render() . '</div>';
 }
 
 /**

@@ -65,7 +65,7 @@ class Deal extends Common
     }
 
     /**
-     * 根据分类、城市ID获取团购商品信息
+     * 根据分类、城市ID获取团购商品信息（分页）
      * @param  [type]  $categoryIds [description]
      * @param  [type]  $cityId      [description]
      * @param  integer $limit       [description]
@@ -82,5 +82,29 @@ class Deal extends Common
         $order = ['sort' => 'asc', 'id' => 'desc'];
 
         return $this->where($where)->field($field, true)->order($order)->limit($limit)->select();
+    }
+
+    /**
+     * 根据条件获取团购商品信息
+     * @param  [type] $cateId 所属分类ID数组 'xxx' => id，是一个where条件
+     * @param  [type] $sort   排序类型
+     * @return [type]         [description]
+     */
+    public function getDealByConditions($cateId = [], $sort)
+    {
+        // 组装排序条件 $order
+        if(!empty($sort['sort_sale'])){
+            $order['sell_count'] = 'desc';
+        }
+        else if(!empty($sort['sort_price'])){
+            $order['current_price'] = 'desc';
+        }
+        else if(!empty($sort['sort_time'])){
+            $order['create_time'] = 'desc';
+        }
+        $order['id'] = 'desc';
+
+        $field = ['sort', 'update_time', 'status'];
+        return $this->where($cateId)->field($field, true)->order($order)->paginate();
     }
 }

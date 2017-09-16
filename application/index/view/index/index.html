@@ -36,9 +36,9 @@
                                 <h3>{$v.name}</h3>
                                 <ul class="reco-words">
                                     {foreach $v['child'] as $value}
-                                        <li><a href="{:url('list/index', ['id' => $value.id])}" target="_blank">{$value.name}</a></li>
+                                        <li><a href="{:url('lists/index', ['id' => $value.id])}" target="_blank">{$value.name}</a></li>
                                     {/foreach}
-                                    <li><a href="{:url('list/index', ['id' => $v.id])}" class="no-right-border no-right-padding" target="_blank">全部<span class="all-cate-arrow"></span></a></li>
+                                    <li><a href="{:url('lists/index', ['id' => $v.id])}" class="no-right-border no-right-padding" target="_blank">全部<span class="all-cate-arrow"></span></a></li>
                                 </ul>
                             </div>
 
