@@ -19,9 +19,11 @@ class Map{
 			'output'  => config('map.output'),
 			'ak'      => config('map.ak'),
 		];
-		$url = config('map.domain_name') . '/' . config('map.geocoder') . '/' . config('map.geo_ver') . '/?' .http_build_query($data);
+		$url = config('map.domain_name') . '/' . config('map.geocoder') . '/' . config('map.geo_ver') . '/?' . http_build_query($data);
 		
 		$result = curlRequest($url);
+		$result = json_decode($result, true);
+		
 		return $result;
 	}
 
@@ -43,8 +45,9 @@ class Map{
 			'center'  => $center,
 			'markers' => $center, // 标注
 		];
-		$url = config('map.domain_name') . '/' . config('map.staticimage') . '/' . config('map.static_ver') . '?' .http_build_query($data);
-		
+		$url = config('map.domain_name') . '/' . config('map.staticimage') . '/' . config('map.static_ver') . '?' . http_build_query($data);
+
+
 		$result = curlRequest($url);
 		return $result;
 	}

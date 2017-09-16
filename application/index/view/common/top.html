@@ -20,7 +20,7 @@
                 <li>|</li>
                 {if condition="$common_user"}
                     <li><a href="{:url('user/logout')}">退出</a></li>
-                    <li><span style="color: #ff318c;">欢迎您，{$user.username}</span></li>
+                    <li><span style="color: #ff318c;">欢迎您，{$common_user.username}</span></li>
                 {else /}
                     <li><a href="{:url('user/register')}">注册</a></li>
                     <li>|</li>

@@ -81,7 +81,7 @@ class Location extends Common
             $mail = new \Mail;
             $email = model('Bis')->where(['id' => $bisId])->value('email');
             $username = model('BisAccount')->where(['bis_id' => $bisId])->value('username');
-            $title = config('web.web_name') . '分店申请通知';
+            $title = '分店申请通知';
             $url = request()->domain() . url('bis/location/waiting', ['id' => $locationId, 'is_main' => 0]);
             $content = <<<EOF
 <div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">

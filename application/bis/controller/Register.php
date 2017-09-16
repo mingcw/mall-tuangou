@@ -144,12 +144,12 @@ class Register extends Controller
 
         // 邮件通知
         $mail = new \Mail;
-        $title = config('web.web_name') . '入驻申请通知';
+        $title = '入驻申请通知';
         $url = request()->domain() . url('bis/register/waiting', ['id' => $bisId]);
         $content = <<<EOF
 <div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">
 <p>您好，{$data['username']}，感谢您的注册</p>
-<p>您的入驻申请正在等待审核, 请点击链接 <a href="{$url}" target="_blank" style="color: #f60;">查看</a> 最终审核结果</p></div>
+<p>您的入驻申请正在等待审核, 请点击链接 <a href="{$url}" target="_blank" style="color: #f00;">查看</a> 最终审核结果</p></div>
 EOF;
         $mail->sendMail($data['email'], $data['username'], $title, $content);
 
@@ -177,11 +177,12 @@ EOF;
      * @param  [type] $address [description]
      * @return json          [description]
      */
-    public function getLngLat($address){
-        if(request()->isAjax()){
-            $address = input('address');
+    public function getLngLat(){
+        if(!request()->isAjax()){
+           $this->error('页面不存在', url('/'));
         }
 
+        $address = input('post.address', '', 'trim');
         $lngLat = \Map::getLngLat($address);
         ob_end_clean();
         if(empty($lngLat) || $lngLat['status'] != 0 || $lngLat['result']['precise'] != 1){
@@ -196,10 +197,11 @@ EOF;
      * @return [type]           [description]
      */
     public function checkUsername($username){
-        if(request()->isAjax()){
-            $$username = input('username');
+        if(!request()->isAjax()){
+           $this->error('页面不存在', url('/'));
         }
 
+        $username = input('username', '', 'trim');
         ob_end_clean();
         if(model('BisAccount')->where(['username' => $username])->value('id')){
             return $this->result('', 1, '用户名已存在');

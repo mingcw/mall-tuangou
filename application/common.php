@@ -15,14 +15,16 @@
 
 /**
  * 格式化打印
- * @param  [type] $arr [description]
- * @return [type]      [description]
+ * @param  [type]  $arr [description]
+ * @param  integer $die 1或0，是否终止脚本，默认0
+ * @return [type]       [description]
  */
-function p($arr)
+function p($arr, $die = 0)
 {
 	echo '<pre>';
 	print_r($arr);
 	echo '</pre>';
+    $die && die;
 }
 
 /**
@@ -67,8 +69,7 @@ function curlRequest($url, $method = 0, $postData = []){
     if($result === false){
         $output =  'cURL error: ' . curl_error($ch);
     }
-    $result = json_decode($result, true);
-
+    
     // 释放 cURL 句柄资源
     curl_close($ch);
 
@@ -249,6 +250,35 @@ function getKey(){
     $key = time() . mt_rand(10000, 99999) ;
     $key = str_replace('=', '', base64_encode($key));
     return md5($key);
+}
+
+/**
+ * 距离指定时间还有几年、月、天、小时、分钟、秒
+ * @param  [type] $time 时间戳
+ * @return [type]       如果已经过去，返回空串
+ */
+function remainTime($time){
+    $now = time();
+    $a = new DateTime(date('Y-m-d H:i:s', $time));
+    $b = new DateTime(date('Y-m-d H:i:s', $now));
+
+    $diff = date_diff($a, $b);
+    $y = $diff->y;
+    $m = $diff->m;
+    $d = $diff->d;
+    $h = $diff->h;
+    $i = $diff->i;
+    $s = $diff->s;
+
+    $html = '';
+    $y && $html .= $y . '年';
+    $m && $html .= $m . '个月';
+    $d && $html .= $d . '天';
+    $h && $html .= $h . '小时';
+    $i && $html .= $i . '分钟';
+    $s && $html .= $s . '秒';
+
+    return ($time > $now) ? $html : '';
 }
 
 /**

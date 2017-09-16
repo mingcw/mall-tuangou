@@ -109,7 +109,7 @@ class Location extends Controller
         $location = $this->model->where(['id' => $data['id']])->field(['name', 'bis_id'])->find();
         $email = model('Bis')->where(['id' => $location->bis_id])->value('email');
         $username = model('BisAccount')->where(['bis_id' => $location->bis_id])->value('username');
-        $title = config('web.web_name') . '门店最新状态通知';
+        $title = '门店最新状态通知';
         $statusText = locationStatus((int)$data['status']);
         $content = <<<EOF
 <div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">

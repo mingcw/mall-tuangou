@@ -113,7 +113,7 @@ class Bis extends Controller
         $mail = new \Mail;
         $email = model('Bis')->where(['id' => $data['id']])->value('email');
         $username = model('BisAccount')->where(['bis_id' => $data['id']])->value('username');
-        $title = config('web.web_name') . '商户入驻申请通知';
+        $title = '商户入驻申请通知';
         $statusText = bisStatus((int)$data['status']);
         $content = <<<EOF
 <div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">

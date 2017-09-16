@@ -80,7 +80,7 @@ class Deal extends Common
             $bisId = $this->getLoginBis()->bis_id;
             $email = model('Bis')->where(['id' => $bisId])->value('email');
             $username = model('BisAccount')->where(['bis_id' => $bisId])->value('username');
-            $title = config('web.web_name') . '商品添加通知';
+            $title = '商品添加通知';
             $url = request()->domain() . url('bis/deal/waiting', ['id' => $dealId]);
             $content = <<<EOF
 <div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">

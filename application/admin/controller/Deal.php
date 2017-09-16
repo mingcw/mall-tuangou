@@ -198,7 +198,7 @@ class Deal extends Controller
         $deal = $this->model->where(['id' => $data['id']])->field(['name', 'bis_id'])->find();
         $email = model('Bis')->where(['id' => $deal->bis_id])->value('email');
         $username = model('BisAccount')->where(['bis_id' => $deal->bis_id])->value('username');
-        $title = config('web.web_name') . '团购商品最新状态通知';
+        $title = '团购商品最新状态通知';
         $statusText = dealStatus((int)$data['status']);
         $content = <<<EOF
 <div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">

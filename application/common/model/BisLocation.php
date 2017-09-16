@@ -49,4 +49,17 @@ class BisLocation extends Common
 
         return $this->where($where)->field($field)->order($order)->paginate();
     }
+
+    /**
+     * 根据逗号分隔的id串获取门店信息
+     * @param  [type] $ids [description]
+     * @return [type]      [description]
+     */
+    public function getLocationByIds($ids)
+    {
+        $where = ['id' => ['in', $ids], 'status' => 1];
+        $field = ['sort', 'create_time', 'update_time', 'status'];
+
+        return $this->where($where)->field($field, true)->select();
+    }
 }

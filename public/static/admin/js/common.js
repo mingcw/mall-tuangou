@@ -127,18 +127,15 @@ $('.categoryId').change(function () {
 	}, 'json');		
 });
 
-// 有效性标志位
-var ok = {
-	magtag: false,
-	username: false
-};
-
 /**
  * 异步获取经纬度
  * @param  {[type]} ) [description]
  * @return {[type]}   [description]
  */
 $('.maptag').click(function () {
+	$('input[name="address"]').blur();
+});
+$('input[name="address"]').blur(function () {
 	var address = $(this).val().trim(),
 		url = _lng_lat_url_,
 		postData = {address: address};
@@ -146,12 +143,10 @@ $('.maptag').click(function () {
 	$.post(url, postData, function (result, textStatus, xhr) {
 		if(result.code == 0){
 			layer.msg('经度：' + result.data.result.location.lng + ', 纬度：' + result.data.result.location.lat);
-			ok.magtag = true;
 			return true;
 		}
 		else{
 			layer.msg(result.msg, {icon: 5});
-			ok.magtag = false;
 			return false;
 		}
 	}, 'json');
@@ -186,17 +181,36 @@ $('input[name="username"]').blur(function () {
  * @return {[type]}   [description]
  */
 $('#regis').submit(function () {
-	if(!ok.magtag){
-		$('.maptag').click();
-		$('input[name="address"]').focus();
+	if(!$('input[name="address"]').val().trim()){
+		layer.msg('电话不能为空', {icon: 5});
 		return false;
 	}
-	else if(!ok.username){
-		$('input[name="username"]').blur().focus();
+	else if(!$('input[name="contact"]').val().trim()){
+		layer.msg('联系人不能为空', {icon: 5});
+		return false;
+	}
+	else if(!$('input[name="category_id"]').val().trim()){
+		layer.msg('所属分类不能为空', {icon: 5});
+		return false;
+	}
+	else if(!$('input[name="address"]').val().trim()){
+		layer.msg('商户地址不能为空', {icon: 5});
+		return false;
+	}
+	else if(!$('input[name="open_time"]').val().trim()){
+		layer.msg('营业时间不能为空', {icon: 5});
+		return false;
+	}
+	else if(!$('input[name="username"]').val().trim()){
+		layer.msg('用户名不能为空', {icon: 5});
+		return false;
+	}
+	else if(!$('input[name="password"]').val().trim()){
+		layer.msg('密码不能为空', {icon: 5});
 		return false;
 	}
 
-	return true;
+	return $('input[name="username"]').blur();
 });
 
 /**
