@@ -47,7 +47,7 @@
         <div class="final-price-area">应付总额：<span class="sum">￥<span class="price">{$deal.current_price * $count}</span></span></div>
 
         <div class="page-button-wrap">
-            <a href="" class="btn btn-primary">确认</a>
+            <a href="" class="mall-buy btn btn-primary">确认</a>
         </div>
 
         <div style="width: 100%;min-width: 1200px;height: 5px;background: #dbdbdb;margin: 50px 0 20px;"></div>
@@ -56,6 +56,15 @@
     {include file="common/footer" /}
     
     <script>
+        $('.mall-buy').click(function () {
+            var count = $('.buycount-ctrl input').val().trim(),
+                price = $('.sum .price').text(),
+                url = "{:url('order/index', ['id' => $deal.id])}" + "&count=" + count + "&total_price=" + price;
+
+                self.location = url;
+            return false;
+        });
+
         //校验正整数
         function isNaN(number){
             var reg = /^[1-9]\d*$/;

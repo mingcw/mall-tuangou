@@ -283,6 +283,15 @@ function remainTime($time){
 }
 
 /**
+ * 设置订单号
+ */
+function setOrderSn(){
+    list($part1, $part2) = explode(' ', microtime()); // microtime() 默认返回字符串 "microsec sec"
+    $part3 = explode('.', $part1 * 10000);
+    return 'mall' . $part2 . $part3[0] . (rand(100000, 99999));
+}
+
+/**
  * 无限接分类
  * @param  array   $cateArr   要递归的数组
  * @param  string  $name      子级分类在父分类数组中的 key
