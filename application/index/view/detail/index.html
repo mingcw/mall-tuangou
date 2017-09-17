@@ -104,9 +104,9 @@
                             <div class="item-buy-area">
                                 <div style="float:left" class="static-hook-real static-hook-id-12">
                                     {if condition="$keYiQiangGou"}
-                                        <a href="" class="btn-buy btn-buy-qrnew j-btn-buy btn-hit">立即抢购</a>
+                                        <a class="mall-buy btn-buy btn-buy-qrnew j-btn-buy btn-hit">立即抢购</a>
                                     {else /}
-                                         <a href="" class="btn-buy btn-buy-qrnew j-btn-buy btn-hit" style="background: #c0c0c0; border-bottom: 1px solid #c0c0c0;">立即抢购</a>
+                                         <a class="btn-buy btn-buy-qrnew j-btn-buy btn-hit" style="background: #c0c0c0; border-bottom: 1px solid #c0c0c0;">立即抢购</a>
                                     {/if}
                                 </div>
                             </div>
@@ -205,8 +205,15 @@
         </div>
     </div>
 </div>
-
+{include file="common/footer" /}
 <script>
+    $('.mall-buy').click(function () {
+        var count = $('.buycount-ctrl input').val().trim(),
+            url = "{:url('order/confirm', ['id' => $deal.id])}" + "&count=" + count;
+
+        window.open(url);
+    });
+
     //校验正整数
     function isNaN(number){
         var reg = /^[1-9]\d*$/;

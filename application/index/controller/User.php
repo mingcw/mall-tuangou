@@ -30,7 +30,7 @@ class User extends Controller
             }
             $model = model('User');
             $where = ['username' => $data['username']];
-            $field = ['id', 'username', 'password', 'code', 'status'];
+            $field = ['id', 'username', 'password', 'email', 'code', 'status'];
             $user = $model->where($where)->field($field)->find();
             if(!$user || $user->status != 1){
                 $this->error('该用户不存在');
