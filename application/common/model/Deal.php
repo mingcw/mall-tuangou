@@ -126,4 +126,15 @@ class Deal extends Common
         $field = ['sort', 'update_time', 'status'];
         return $this->where($whereStr)->field($field, true)->order($order)->paginate();
     }
+
+    /**
+     * 根据商品ID更新表
+     * @param  [type] $dealId    [description]
+     * @param  [type] $sellCount [description]
+     * @return [type]            [description]
+     */
+    public function updateSellCountByDealId($dealId, $sellCount)
+    {
+        return $this->where(['id' => $dealId])->setInc('sell_count', $sellCount);
+    }
 }

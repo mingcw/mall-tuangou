@@ -1,0 +1,77 @@
+{include file="common/header"}
+{include file="common/top"}
+    <!--支付第二步-->
+    <div class="firstly">
+        <div class="search">
+            <img src="__STATIC__/index/image/logo.png" />
+            <div class="w-order-nav-new">
+                <ul class="nav-wrap">
+                    <li>
+                        <div class="no"><span>1</span></div>
+                        <span class="text">确认订单</span>
+                    </li>
+                    <li class="to-line "></li>
+                    <li class="current">
+                        <div class="no"><span>2</span></div>
+                        <span class="text">选择支付方式</span>
+                    </li>
+                    <li class="to-line "></li>
+                    <li class="">
+                        <div class="no"><span>3</span></div>
+                        <span class="text">购买成功</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="order_infor_module">
+            <div class="order_details">
+                <table width="100%">
+                    <tbody>
+                    <tr>
+                        <td class="fl_left ">
+                            <ul class="order-list">
+                                <li>
+                                    <span class="order-list-no">订单:</span>
+                                    <span class="order-list-name">{$deal->name}</span><span class="order-list-number">{$order.deal_count}份</span>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="fl_right">
+                            <dl>
+                                <dt>应付金额：</dt>
+                                <dd class="money"><span>{$order.total_price}元</span></dd>
+                            </dl>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
+        <div align="center">
+            <h1 class="title">使用微信扫码支付方式</h1>
+            <img alt="微信扫码支付" src="/wxpayapi/example/qrcode.php?data={$url}" style="width:300px;height:300px;"/>
+        </div>
+
+    </div>
+{include file="common/footer"}
+<script>        
+    function get_pay_status(){
+        url = "{:url('api/order/paystatus')}";
+        pay_success_url = "{:url('pay/paysuccess')}";
+        
+        id = {$order.id};
+        postData = {id: id};
+
+        $.post(url, postData, function (result) {
+            if(result.code === 0){
+                self.location = pay_success_url;
+            }
+        }, 'json');
+    }
+    window.setInterval('get_pay_status()', 2000);
+</script>
+</body>
+</html>
