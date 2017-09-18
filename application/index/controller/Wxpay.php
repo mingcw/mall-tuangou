@@ -15,7 +15,7 @@ use wxpay\WxPayNotify;
 class Wxpay extends Common
 {
     /**
-     * 用户支付后，商户后台得到通知的回调方法
+     * 用户支付后，商户后台得到通知的回调接口
      * @return [type] [description]
      */
     public function notify()
@@ -44,10 +44,10 @@ class Wxpay extends Common
 
         // 根据out_trade_no 查询订单数据
         $outTradeNo = $wxData['out_trade_no'];
-        $field = ['sort', 'create_time', 'update_time'];
         $where = ['out_trade_no' => $outTradeNo];
-        $order = model('Order')->where($where)->field($field)->find();
-        if(!$order || $order->pa_status == 1){
+        $field = ['sort', 'create_time', 'update_time'];
+        $order = model('Order')->where($where)->field($field, true)->find();
+        if(!$order || $order->pay_status == 1){
             $resultObj->setData('return_code', 'SUCCESS');
             $resultObj->setData('return_msg', 'ok');
             
@@ -64,7 +64,31 @@ class Wxpay extends Common
 
             // 更新商品表
             model('Deal')->updateSellCountByDealId($deal->deal_id, $deal->deal_count);
+
+            // 消费券生成
+            $coupons = [
+                'sn' => $outTradeNo,
+                'password' => rand(10000, 99999),
+                'user_id' => $order->user_id,
+                'deal_id' => $order->deal_id,
+                'order_id' => $order->id,
+            ];
+            model('Coupons')->save($coupons);
+
+            // 邮件通知（建议走消息队列，减轻服务器压力）
+            $mail = new \Mail;
+            $title = '消费券发放通知';
+            $username = model('User')->where(['id' => $order->user_id])->value('username');
+            $webName = config('web.web_name');
+            $content = <<<EOF
+<div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">
+<p>亲爱的用户 {$username}</p>
+<p>您已获得一张$webName}的最新消费券，请在失效之前消费！</p>
+<p>祝您团购愉快！</p></blockquote></div>
+EOF;
+        $mail->sendMail($data['email'], $data['username'], $title, $content);
         }
+
         catch(\Exception $e) {
             // 更新失败，返回给微信参数，继续回调
             return false;
