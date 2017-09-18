@@ -142,7 +142,7 @@ class Register extends Controller
         $bisLocationModel->commit();
         $bisModel->commit();
 
-        // 邮件通知
+        // 邮件通知（建议走消息队列，减轻服务器压力）
         $mail = new \Mail;
         $title = '入驻申请通知';
         $url = request()->domain() . url('bis/register/waiting', ['id' => $bisId]);

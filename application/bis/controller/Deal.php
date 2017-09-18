@@ -75,7 +75,7 @@ class Deal extends Common
             }
             $dealId = $this->model->getLastInsId();
 
-            // 邮件通知
+            // 邮件通知（建议走消息队列，减轻服务器压力）
             $mail = new \Mail;
             $bisId = $this->getLoginBis()->bis_id;
             $email = model('Bis')->where(['id' => $bisId])->value('email');

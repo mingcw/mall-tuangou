@@ -104,7 +104,7 @@ class Location extends Controller
             $this->error($msg . '失败，请重试');
         }
 
-        // 邮件通知
+        // 邮件通知（建议走消息队列，减轻服务器压力）
         $mail = new \Mail;
         $location = $this->model->where(['id' => $data['id']])->field(['name', 'bis_id'])->find();
         $email = model('Bis')->where(['id' => $location->bis_id])->value('email');

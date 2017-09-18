@@ -77,7 +77,7 @@ class Location extends Common
             }
             $locationId = $this->model->getLastInsId();
 
-            // 邮件通知
+            // 邮件通知（建议走消息队列，减轻服务器压力）
             $mail = new \Mail;
             $email = model('Bis')->where(['id' => $bisId])->value('email');
             $username = model('BisAccount')->where(['bis_id' => $bisId])->value('username');

@@ -109,7 +109,7 @@ class Bis extends Controller
             $this->error($msg . '失败，请重试');
         }
 
-        // 邮件通知
+        // 邮件通知（建议走消息队列，减轻服务器压力）
         $mail = new \Mail;
         $email = model('Bis')->where(['id' => $data['id']])->value('email');
         $username = model('BisAccount')->where(['bis_id' => $data['id']])->value('username');

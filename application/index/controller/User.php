@@ -104,10 +104,10 @@ class User extends Controller
                 $this->error('注册失败，请重试');
             }
 
-             // 邮件通知
+             // 邮件通知（建议走消息队列，减轻服务器压力）
             $mail = new \Mail;
             $webName = config('web.web_name');
-            $title = $webName . '会员注册通知';
+            $title = '会员注册通知';
             $date = date('Y-m-d H:i:s', time());
             $content = <<<EOF
 <div style="margin: 0; padding: 16px 2em; background: #e0f3f7; color: #333;">
