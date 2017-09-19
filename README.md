@@ -64,7 +64,7 @@
 
 1. 部分前端资源现未上传
 
-    * 后台模板框架`H-ui.admin`所需文件未上传（太大），所以`public/static/admin/h-ui-admin`目录下为空。等项目完成后，如果有时间，我会抽离压缩并上传上来
+    * 后台模板框架`H-ui.admin`所需文件未上传，所以`public/static/admin/h-ui-admin`目录下为空
 
 2. 微信支付
     
