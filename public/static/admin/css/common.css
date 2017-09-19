@@ -1,7 +1,0 @@
-.ajax-sort{text-align: center; }
-
-.pagination{float: right; }
-.pagination::after, .pagination li:after{content: ''; clear: both; visibility: hidden; display: none; }
-.pagination li{float: left; margin: 0 2px; text-align: center; }
-.pagination span, .pagination a{padding: 6px 16px; border: 1px solid #ccc; text-align: center; color: #666; }
-.pagination li.active span{background: #5a98de; color: #fff; }
