@@ -1,0 +1,49 @@
+<!--包含头部文件-->
+{include file="common/header" /}
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 已下架商品列表 </nav>
+<div class="page-container">
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="20">ID</th>
+					<th width="100">商品名称</th>
+					<th width="40">栏目分类</th>
+					<th width="40">城市</th>
+					<th width="40">购买件数</th>
+					<th width="80">开始结束时间</th>
+					<th width="80">创建时间</th>
+					<th width="60">状态</th>
+					<th width="40">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{foreach $deals as $v}
+					<tr class="text-c">
+						<td>{$v.id}</td>
+						<td>{$v.name}</td>
+						<td>{$categoryArr[$v.category_id]}</td>
+						<td>{$cityArr[$v.city_id]}</td>
+						<td>{$v.sell_count}</td>
+						<td>
+							{$v.start_time|date='y-m-d H:i',###}<br/>
+							{$v.end_time|date='y-m-d H:i',###}
+						</td>
+						<td>{$v.create_time}</td>
+						<td>
+							<a href="{:url('deal/status', ['id' => $v.id, 'status' => 1])}" title="点击上架">{$v.status|status=###,0}
+						</td>
+						<td class="td-manage">
+							<a style="text-decoration:none" class="ml-5" onClick="o2o_edit('商品详情查看', '{:url('deal/detail', ['id' => $v.id])}')" href="javascript:;" title="查看"><i class="Hui-iconfont">&#xe6df;</i></a>
+						</td>
+					</tr>
+				{/foreach}
+			</tbody>
+		</table>
+	</div>
+	{:paginate($deals)}
+</div>
+<!--包含头部文件-->
+{include file="common/footer" /}
+<script src="__STATIC__/admin/hui/lib/My97DatePicker/WdatePicker.js"></script>

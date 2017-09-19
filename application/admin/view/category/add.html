@@ -1,0 +1,37 @@
+<!--包含头部文件-->
+{include file="common/header" /}
+<body>
+<div class="page-container">
+    <form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="{:url('category/add')}">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>生活服务分类名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="name" name="name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                <select name="parent_id" class="select">
+                    <option value="0">顶级分类</option>
+                    {foreach $data as $v}
+                        <option value="{$v.id}">-- {$v.name}</option>
+                    {/foreach}
+                </select>
+                </span>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button  type="submit" class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+
+                <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<!--包含头部文件-->
+{include file="common/footer" /}

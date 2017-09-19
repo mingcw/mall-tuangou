@@ -1,0 +1,129 @@
+{include file="common/header" /}
+{include file="common/top" /}
+{include file="common/nav" /}
+
+    <div class="page-body">
+        <div class="filter-bg">
+            <div class="filter-wrap">
+                <div class="w-filter-ab-test">
+                    <div class="w-filter-top-nav clearfix" style="margin:12px">
+
+                    </div>
+                    
+                    <div class="filter-wrapper">
+                        <div class="normal-filter ">
+                            <div class="w-filter-normal-ab  filter-list-ab">
+                                <h5 class="filter-label-ab">分类</h5>
+                                <span class="filter-all-ab">
+                                    <a href="{:url('lists/index')}" class="w-filter-item-ab  item-all-auto-ab"><span class="item-content {if condition='$id eq 0'}filter-active-all-ab{/if}">全部</span></a>
+                                </span>
+                                <div class="j-filter-items-wrap-ab filter-items-wrap-ab">
+                                    <div class="j-filter-items-ab filter-items-ab filter-content-ab">
+                                        {foreach $topCates as $v}
+                                            <a href="{:url('lists/index', ['id' => $v.id])}" class="w-filter-item-ab"><span class="item-content {if condition='$v.id eq $pid'}filter-active-all-ab{/if}">{$v.name}</span></a>
+                                        {/foreach}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    {if condition="$subCates"}
+                        <div class="filter-wrapper">
+                            <div class="normal-filter ">
+                                <div class="w-filter-normal-ab  filter-list-ab">
+                                    <h5 class="filter-label-ab">子分类</h5>
+                                    <span class="filter-all-ab">
+                                        
+                                    </span>
+                                    <div class="j-filter-items-wrap-ab filter-items-wrap-ab">
+                                        <div class="j-filter-items-ab filter-items-ab filter-content-ab">
+                                            {foreach $subCates as $v}
+                                                <a href="{:url('lists/index', ['id' => $v.id])}" class="w-filter-item-ab"><span class="item-content {if condition='$v.id eq $id'}filter-active-all-ab{/if}">{$v.name}</span></a>
+                                            {/foreach}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
+                </div>
+                <div class="w-sort-bar">
+                    <div class="bar-area" style="position: relative; left: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; top: 0px;">
+                        <span class="sort-area">
+                            <a href="{:url('lists/index', ['id' => $id])}" class="sort-default {if condition='!$sortFlag'} sort-default-active{/if}">默认</a>
+                            <a href="{:url('lists/index', ['id' => $id, 'sort_sale' => 1])}" class="sort-item sort-down price {if condition='$sortFlag eq "sort_sale"'}sort-default-active{/if}" title="点击按销量降序排序">销量↓</a>
+                            <a href="{:url('lists/index', ['id' => $id, 'sort_price' => 1])}"  class="sort-item price-default price {if condition='$sortFlag eq "sort_price"'}sort-default-active{/if}" title="点击按价格降序排序">价格↓</a>
+                            
+                            <a href="{:url('lists/index', ['id' => $id, 'sort_time' => 1])}"  class="sort-item sort-up {if condition='$sortFlag eq "sort_time"'}sort-default-active{/if}" title="发布时间由近到远">最新发布↑</a>
+                        </span>
+                        
+                    </div>
+                </div>
+                <ul class="itemlist eight-row-height">
+                   {foreach $deals as $v}
+                        <li class="j-card">
+                            <a href="{:url('detail/index', ['id' => $v.id])}">
+                                <div class="imgbox">
+                                    <ul class="marketing-label-container">
+                                        <li class="marketing-label marketing-free-appoint"></li>
+                                    </ul>
+                                    <div class="range-area">
+                                    <div class="range-bg"></div>
+                                       
+                                    </div>
+                                    <div class="borderbox">
+                                        <img src="{$v.image}" />
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="contentbox">
+                                <a href="{:url('detail/index', ['id' => $v.id])}" target="_blank">
+                                    <div class="header">
+                                        <h4 class="title ">【{$v.location_ids|countLocation}店通用】</h4>
+                                        <div class="collected">精选</div>
+                                    </div>
+                                    <p>{$v.name}</p>
+                                </a>
+                                <div class="add-info"></div>
+                                <div class="pinfo">
+                                    <span class="price"><span class="moneyico">¥</span>52</span>
+                                    <span class="ori-price">价值<span class="price-line">¥<span>{$v.current_price}</span></span></span>
+                                </div>
+                                <div class="footer">
+                                    <span class="comment">&nbsp;</span><span class="sold">已售{$v.sell_count}</span>
+                                    <div class="bottom-border"></div>
+                                </div>
+                            </div>
+                        </li>
+                    {/foreach}                  
+                </ul>
+            </div>
+        </div>
+        {:paginate($deals)}
+    </div>
+
+    <div class="footer-content">
+        <div class="copyright-info">
+            
+        </div>
+    </div>
+
+    {include file="common/footer" /}
+    
+    <script>
+        $(".tab-item-wrap").click(function(){
+            var index = $(".tab-item-wrap").index(this);
+            $(".tab-item-wrap").removeClass("selected");
+            $(".district-cont-wrap").css({display: "none"});
+            $(this).addClass("selected");
+            $(".district-cont-wrap").eq(index).css({display: "block"});
+        });
+
+        $(".sort-area a").click(function(){
+            $(".sort-area a").removeClass("sort-default-active").css({color: "#666"});
+            $(this).addClass("sort-default-active").css({color: "#ff4883"});
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>注册</title>
+    <link rel="stylesheet" href="__STATIC__/index/css/base.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/register.css" />
+    <script type="text/javascript" src="__STATIC__/index/js/html5shiv.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/js/respond.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="head">
+            <ul>
+                <li><a href="{:url('/')}"><img src="__STATIC__/index/image/logo.png" alt="logo"></a></li>
+                <li class="divider"></li>
+                <li><a href="/">注册{:config('web.web_name')}账号</a></li>
+            </ul>
+            <div class="login-link">
+                <span>我已注册，现在就</span>
+                <a href="{:url('user/login')}">登录</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <form class="content-form" method="post" action="{:url('user/register')}">
+                <p class="pass-form-item">
+                    <label class="pass-label">用户名</label>
+                    <input type="text" name="username" class="pass-text-input" placeholder="请设置用户名（不可修改）">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">邮箱号</label>
+                    <input type="text" name="email" class="pass-text-input" placeholder="可用于接受团购券账号和密码便于消费">
+                </p>
+
+                <p class="pass-form-item">
+                    <label class="pass-label">密码</label>
+                    <input type="password" name="password" class="pass-text-input" placeholder="请设置登录密码">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">确认密码</label>
+                    <input type="password" name="password2" class="pass-text-input" placeholder="请确认登录密码">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">验证码</label>
+                    <input type="text" name="verify" class="pass-text-input " placeholder="请输入验证码">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">&nbsp;</label>
+                    <img src="/captcha" alt="图像验证码" title="看不清，换一张" onclick="javascript: this.src = '/captcha?' + Math.random()" style="cursor: pointer;">
+                </p>
+
+                <p class="pass-form-item">
+                    <input type="submit" value="注册" class="pass-button">
+                </p>
+            </form>
+            <div class="reg-sms">
+            <h3 class="reg-sms-title">{:config('web.web_name')}温馨提示</h3>
+                <div class="reg-sms-content">
+                    <p class="reg-sms-p reg-sms-p-text">注册本站会员，将表示：</p>
+                    <p class="reg-sms-p reg-sms-p-warn">你同意和遵守本站的相关管理规定</p>
+                    <p class="reg-sms-p reg-sms-p-text">本站严格过滤爬虫账号：</p>
+                    <p class="reg-sms-p reg-sms-p-warn">一旦发现，将永久封号</p>
+                    <p class="reg-sms-p reg-sms-p-last">祝您团购愉快！</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="foot">
+            <div>
+                <div>2016&nbsp;©Baidu</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

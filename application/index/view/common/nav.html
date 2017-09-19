@@ -1,0 +1,44 @@
+<div class="search">
+    <img src="__STATIC__/index/image/logo.png" />
+
+</div>
+
+<div class="nav-bar-header">
+    <div class="nav-inner">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <span class="item">全部分类</span>
+                <div class="left-menu">
+                    {foreach $common_cate as $k => $v}
+                        <div class="level-item">
+                            <div class="first-level">
+                                <dl>
+                                    <dt class="title"><a href="{:url('lists/index', ['id' => $v.id])}" target="_blank">{$v.name}</a></dt>
+                                    <dd><a href="{:url('lists/index', ['id' => $v.child[1]['id']])}" target="_blank" class="">{$v.child[0]['name']}</a></dd>
+                                    <dd><a href="{:url('lists/index', ['id' => $v.child[1]['id']])}" target="_blank" class="">{$v.child[1]['name']}</a></dd>
+                                </dl>
+                            </div>
+                            <div class="second-level">
+                                <div class="section">
+                                    <div class="section-item clearfix no-top-border">
+                                        <h3>其他分类</h3>
+                                        <ul>
+                                            {foreach $v.child as $value}
+                                                <li><a href="{:url('lists/index', ['id' => $value.id])}" target="_blank">{$value.name}</a></li>
+                                            {/foreach}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {/foreach}
+                </div>
+            </li>
+            <li class="nav-item"><a href="{:url('/')}" class="item first active">首页</a></li>
+            <li class="nav-item"><a href="" class="item">团购</a></li>
+            <li class="nav-item"><a href="" class="item">电影</a></li>
+            <li class="nav-item"><a href="" class="item">酒店</a></li>
+            <li class="nav-item"><a href="{:url('bis/index/index')}" class="item">商户中心</a></li>
+        </ul>
+    </div>
+</div>
