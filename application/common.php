@@ -185,9 +185,10 @@ function getSeCategoryName($categoryPath, $hasFirst = 1){
         }
         else{ // 多个二级分类
             $seCategoryId = explode('|', $str);
-            $name = model('Category')->where(['id' => ['in', $seCategoryId]])->column('name');
-            $count = count($name);
-            foreach ($name as $k => $v) {
+            $names = model('Category')->where(['id' => ['in', $seCategoryId]])->column('name');
+            $count = count($names);
+            $name = '';
+            foreach ($names as $k => $v) {
                 $name .= '<span>' . $v . '</span>';
                 ($k != $count - 1) && $name .= ',&nbsp;';
             }
@@ -201,9 +202,10 @@ function getSeCategoryName($categoryPath, $hasFirst = 1){
         }
         else{ //多个二级分类
             $seCategoryId = explode(',', $categoryPath);
-            $name = model('Category')->where(['id' => ['in', $seCategoryId]])->column('name');
-            $count = count($name);
-            foreach ($name as $k => $v) {
+            $names = model('Category')->where(['id' => ['in', $seCategoryId]])->column('name');
+            $count = count($names);
+            $name = '';
+            foreach ($names as $k => $v) {
                 $name .= '<span>' . $v . '</span>';
                 ($k != $count - 1) && $name .= ',&nbsp;';
             }
