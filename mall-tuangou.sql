@@ -34,7 +34,6 @@ CREATE TABLE IF NOT EXISTS `hd_city`(
 -- -----------------------------------------------------
 -- 商圈表
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hd_area`(
 	`id` int(10) UNSIGNED NOT NULL,
 	`name` varchar(50) NOT NULL DEFAULT '' COMMENT '商圈名',
 	`city_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '所属城市ID',
